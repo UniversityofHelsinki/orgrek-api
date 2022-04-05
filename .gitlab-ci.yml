@@ -1,0 +1,50 @@
+image: quay.io/tike/alpine-oc-node
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+# Define a hidden job to be used with extends
+# Better than default to avoid activating cache for all jobs
+.dependencies_cache:
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm
+    policy: pull
+
+# Define the stages
+stages:
+  - setup
+  - deploy
+
+# Define the process for each stage
+
+# Define the process for setup stage
+setup:
+  stage: setup
+  tags:
+    - ohtu-build-1
+  script:
+    - npm ci
+  extends: .dependencies_cache
+  cache:
+    policy: pull-push
+  artifacts:
+    expire_in: 1h
+    paths:
+      - node_modules
+
+deploy_dev:
+  stage: deploy
+  tags:
+    - ohtu-build-1
+  environment:
+    name: development
+  only:
+    - main
+  script:
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
+    - ls -la
