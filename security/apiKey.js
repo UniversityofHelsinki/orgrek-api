@@ -1,5 +1,5 @@
 export const checkApiKey = (req, res, next) => {
-    const apiKey = req.get('x-api-key');
+    const apiKey = req.get('api-key');
     if (!apiKey || apiKey !== process.env.HY_APPLICATION_API_KEY) {
         res.status(401).json({error: 'unauthorised'})
     } else {
