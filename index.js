@@ -12,10 +12,6 @@ const port = process.env.OPENSHIFT_NODEJS_PORT || 3003;
 app.use(compression());
 app.use(helmet());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
 app.use('/public', router);
 routes(router);
 
