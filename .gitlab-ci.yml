@@ -19,8 +19,6 @@ stages:
   - setup
   - deploy
 
-# Define the process for each stage
-
 # Define the process for setup stage
 setup:
   stage: setup
@@ -47,4 +45,17 @@ deploy_dev:
   script:
     # set home path for openshift 1001 user
     - export HOME=/home/1001
-    - ls -la
+    # before any action, I connect to the OpenShift server with the appropriate credentials
+    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
+    - oc project organisaatiorekisteri
+    # add secrets here
+    # list environment variables here
+    - oc set env dc/organisaatiorekisteri-api-dev API_DB_HOST=$API_DB_HOST_DEV
+    - oc set env dc/organisaatiorekisteri-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
+    - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    # start build process in OpenShift
+    - oc start-build organisaatiorekisteri-api-dev --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisaatiorekisteri-api-dev --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisaatiorekisteri-api-dev --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
