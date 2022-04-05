@@ -49,7 +49,10 @@ deploy_dev:
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
     - oc project organisaatiorekisteri
     # add secrets here
+    - oc delete secret generic hy-organisation-application-api-key --ignore-not-found
+    - oc create secret generic hy-organisation-application-api-key --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
     # list environment variables here
+    - oc set env --from=secret/hy-organisation-application-api-key dc/organisaatiorekisteri-api-dev
     - oc set env dc/organisaatiorekisteri-api-dev API_DB_HOST=$API_DB_HOST_DEV
     - oc set env dc/organisaatiorekisteri-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
     - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
@@ -75,7 +78,10 @@ deploy_test:
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
     - oc project organisaatiorekisteri
     # add secrets here
+    - oc delete secret generic hy-organisation-application-api-key --ignore-not-found
+    - oc create secret generic hy-organisation-application-api-key --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
     # list environment variables here
+    - oc set env --from=secret/hy-organisation-application-api-key dc/organisaatiorekisteri-api-test
     - oc set env dc/organisaatiorekisteri-api-test API_DB_HOST=$API_DB_HOST_TEST
     - oc set env dc/organisaatiorekisteri-api-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
     - oc set env dc/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
