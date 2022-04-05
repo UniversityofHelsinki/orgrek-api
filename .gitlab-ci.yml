@@ -85,3 +85,29 @@ deploy_test:
     # patch openshift buildConfig file
     - oc patch bc/organisaatiorekisteri-api-test --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
     - oc patch bc/organisaatiorekisteri-api-test --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
+
+deploy_prod:
+  stage: deploy
+  tags:
+    - ohtu-build-1
+  environment:
+    name: development
+  only:
+    - prod
+  script:
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
+    # before any action, I connect to the OpenShift server with the appropriate credentials
+    - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD
+    - oc project organisaatiorekisteri
+    # add secrets here
+    # list environment variables here
+    - oc set env dc/organisaatiorekisteri-api-prod API_DB_HOST=$API_DB_HOST_PROD
+    - oc set env dc/organisaatiorekisteri-api-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
+    - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    # start build process in OpenShift
+    - oc start-build organisaatiorekisteri-api-prod --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisaatiorekisteri-api-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisaatiorekisteri-api-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
