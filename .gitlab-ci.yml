@@ -109,7 +109,10 @@ deploy_prod:
     - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD
     - oc project organisaatiorekisteri
     # add secrets here
+    - oc delete secret generic hy-organisation-application-api-key-prod --ignore-not-found
+    - oc create secret generic hy-organisation-application-api-key-prod --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_PROD_API_KEY
     # list environment variables here
+    - oc set env --from=secret/hy-organisation-application-api-key-prod dc/organisaatiorekisteri-api-prod
     - oc set env dc/organisaatiorekisteri-api-prod API_DB_HOST=$API_DB_HOST_PROD
     - oc set env dc/organisaatiorekisteri-api-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
     - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
