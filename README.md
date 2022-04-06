@@ -11,7 +11,7 @@ install required packages
 start application
 
 ## Add .env file to project root with environment variables
-HY_APPLICATION_API_KEY=(application api key)  
+HY_ORGANISATION_APPLICATION_API_KEY=(application api key found in keepass)  
 API_DB_HOST=(database microservice example http://localhost:8000  
 API_OU_SERVICE_HOST=(organisation unit microservice example http://localhost:5000  
 
