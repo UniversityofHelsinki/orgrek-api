@@ -70,7 +70,7 @@ deploy_test:
   tags:
     - ohtu-build-1
   environment:
-    name: development
+    name: testing
   only:
     - test
   script:
@@ -100,7 +100,7 @@ deploy_prod:
   tags:
     - ohtu-build-1
   environment:
-    name: development
+    name: production
   only:
     - prod
   script:
