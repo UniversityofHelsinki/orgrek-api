@@ -57,6 +57,7 @@ deploy_dev:
     - oc set env dc/organisaatiorekisteri-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
     - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env dc/organisaatiorekisteri-api-dev TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-dev --from-dir=. --follow
     # patch openshift buildConfig file
@@ -86,6 +87,7 @@ deploy_test:
     - oc set env dc/organisaatiorekisteri-api-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
     - oc set env dc/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env dc/organisaatiorekisteri-api-test TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-test --from-dir=. --follow
     # patch openshift buildConfig file
@@ -112,6 +114,7 @@ deploy_prod:
     - oc set env dc/organisaatiorekisteri-api-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
     - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env dc/organisaatiorekisteri-api-prod TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-prod --from-dir=. --follow
     # patch openshift buildConfig file
