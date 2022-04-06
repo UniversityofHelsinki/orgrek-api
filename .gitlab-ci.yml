@@ -30,6 +30,7 @@ setup:
   cache:
     policy: pull-push
   artifacts:
+    name: $CI_COMMIT_REF_NAME
     expire_in: 1h
     paths:
       - node_modules
