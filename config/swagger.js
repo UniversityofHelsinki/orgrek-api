@@ -1,6 +1,4 @@
-
 import swaggerJsdoc from 'swagger-jsdoc';
-import router from "../api/routes.js";
 
 // https://swagger.io/docs/specification/2-0/basic-structure/
 const options = {

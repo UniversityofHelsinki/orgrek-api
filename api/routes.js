@@ -9,6 +9,11 @@ const router = (router) => {
     router.use(`/${API_VERSION_1}/docs`, swaggerUi.serve);
     router.get(`/${API_VERSION_1}/docs`, swaggerUi.setup(apiSpecs));
 
+    router.get(`/${API_VERSION_1}/docs.json`, (req, res) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(apiSpecs);
+    });
+
     /**
      * @swagger
      *     /public/v1/texts/:
