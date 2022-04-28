@@ -18,6 +18,8 @@ const router = (router) => {
      * @swagger
      *     /public/v1/texts/:
      *     get:
+     *       security:
+     *         - Apikey: []
      *       tags:
      *         - retrieve
      *       summary: Return all texts
