@@ -16,7 +16,7 @@ const router = (router) => {
 
     /**
      * @swagger
-     *     /public/v1/texts/:
+     *     /v1/texts/:
      *     get:
      *       security:
      *         - Apikey: []
