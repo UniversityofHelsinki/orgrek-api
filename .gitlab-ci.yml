@@ -103,6 +103,7 @@ deploy_prod:
     name: production
   only:
     - prod
+  when: manual
   script:
     # set home path for openshift 1001 user
     - export HOME=/home/1001
