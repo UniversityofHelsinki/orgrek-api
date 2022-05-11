@@ -2,14 +2,11 @@ import { texts } from '../api/api-db.js';
 import { steeringGroups } from "./api-ou-service.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 
-import swaggerUi from 'swagger-ui-express';
 import apiSpecs from '../config/swagger.js'; // swagger config
 
 const router = (router) => {
 
-    router.use(`/${API_VERSION_1}/docs`, swaggerUi.serve);
-    router.get(`/${API_VERSION_1}/docs`, swaggerUi.setup(apiSpecs));
-
+    // return swagger.json so api-gateway can create swagger configuration based on this file
     router.get(`/${API_VERSION_1}/docs/swagger.json`, (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(apiSpecs);

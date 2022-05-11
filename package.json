@@ -16,7 +16,6 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "node-fetch": "^3.2.3",
-    "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.3.0"
+    "swagger-jsdoc": "^6.2.1"
   }
 }
