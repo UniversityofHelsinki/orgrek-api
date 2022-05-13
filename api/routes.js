@@ -32,21 +32,21 @@ const router = (router) => {
 
     /**
      * @swagger
-     *     /v1/steering/:
+     *     /v1/degreeProgrammes/steeringGroups:
      *     get:
      *       security:
      *         - Apikey: []
      *       tags:
      *         - retrieve
      *       summary: Returns all steeringGroups for degree programmes
-     *       description: Return all steering groups
+     *       description: Returns all steering groups for degree programmes
      *       responses:
      *         200:
      *           description: all steering groups
      *         default:
      *           description: Unexpected error
      */
-    router.get(`/${API_VERSION_1}/steering`, steeringGroups);
+    router.get(`/${API_VERSION_1}/degreeProgrammes/steeringGroups`, steeringGroups);
 
 
 };
