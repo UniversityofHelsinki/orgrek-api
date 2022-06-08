@@ -14,24 +14,6 @@ const router = (router) => {
 
     /**
      * @swagger
-     *     /v1/texts/:
-     *     get:
-     *       security:
-     *         - Apikey: []
-     *       tags:
-     *         - retrieve
-     *       summary: Return all texts
-     *       description: Return all texts
-     *       responses:
-     *         200:
-     *           description: all texts
-     *         default:
-     *           description: Unexpected error
-     */
-    router.get(`/${API_VERSION_1}/texts`, texts);
-
-    /**
-     * @swagger
      *     /v1/degreeProgrammes/steeringGroups:
      *     get:
      *       security:

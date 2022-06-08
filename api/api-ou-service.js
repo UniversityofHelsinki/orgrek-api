@@ -1,10 +1,9 @@
 import fetch from "node-fetch";
-const apiDbHost = process.env.API_OU_SERVICE_HOST;
+const apiServiceHost = process.env.API_OU_SERVICE_HOST;
 
 export const steeringGroups = async (req, res) => {
-    console.log('steering');
     try {
-        const response = await fetch(`${apiDbHost}/api/steering/steeringGroups`, {
+        const response = await fetch(`${apiServiceHost}/api/public/steering/steeringGroups`, {
             method: 'GET',
         });
         const data = await response.json();
