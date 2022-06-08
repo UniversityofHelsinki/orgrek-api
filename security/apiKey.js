@@ -1,8 +1,6 @@
 export const checkApiKey = (req, res, next) => {
     const apiKey = req.get('api-key');
 
-    console.log(req.path);
-
     if (req.path.includes('/docs')) {
         next();
     } else {

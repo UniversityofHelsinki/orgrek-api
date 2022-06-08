@@ -1,4 +1,3 @@
-import { texts } from '../api/api-db.js';
 import { steeringGroups } from "./api-ou-service.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 
