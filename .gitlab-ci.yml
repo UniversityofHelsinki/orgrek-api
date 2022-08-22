@@ -125,3 +125,33 @@ deploy_prod:
     # patch openshift buildConfig file
     - oc patch bc/organisaatiorekisteri-api-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
     - oc patch bc/organisaatiorekisteri-api-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
+
+deploy_organisation_dev:
+  stage: deploy
+  tags:
+    - ohtu-build-1
+  environment:
+    name: development
+  only:
+    - organisation-dev
+  script:
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
+    # before any action, I connect to the OpenShift server with the appropriate credentials
+    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
+    - oc project organisaatiorekisteri
+    # add secrets here
+    - oc delete secret generic hy-organisation-application-api-key-dev --ignore-not-found
+    - oc create secret generic hy-organisation-application-api-key-dev --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
+    # list environment variables here
+    - oc set env --from=secret/hy-organisation-application-api-key-dev dc/organisation-api-dev
+    - oc set env dc/organisation-api-dev API_DB_HOST=$API_DB_HOST_ORGANISATION_DEV
+    - oc set env dc/organisation-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_ORGANISATION_DEV
+    - oc set env dc/organisation-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env dc/organisation-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env dc/organisation-api-dev TZ="Europe/Helsinki"
+    # start build process in OpenShift
+    - oc start-build organisation-api-dev --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisation-api-dev --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisation-api-dev --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
