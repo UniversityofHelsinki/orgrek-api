@@ -1,5 +1,5 @@
 import { steeringGroups } from "./api-ou-service.js";
-import { degreeProgrammes } from "./api-db.js";
+import { degreeProgrammes, texts } from "./api-db.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 
 import apiSpecs from '../config/swagger.js'; // swagger config
@@ -31,6 +31,8 @@ const router = (router) => {
     router.get(`/${API_VERSION_1}/degreeProgrammes/steeringGroups`, steeringGroups);
 
     router.get(`/${API_VERSION_1}/degreeProgrammes/:id`, degreeProgrammes);
+
+    router.get(`/${API_VERSION_1}/texts`, texts);
 
 };
 

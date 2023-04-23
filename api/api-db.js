@@ -12,3 +12,15 @@ export const degreeProgrammes = async (req, res) => {
         console.log(err);
     }
 };
+
+export const texts = async (req, res) => {
+    try {
+        const response = await fetch(`${apiDbHost}/api/texts`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
