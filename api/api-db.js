@@ -24,3 +24,16 @@ export const texts = async (req, res) => {
         console.log(err);
     }
 };
+
+export const steeringGroups = async (req, res) => {
+    try {
+        const response = await fetch(`${apiDbHost}/api/public/steeringGroups`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
