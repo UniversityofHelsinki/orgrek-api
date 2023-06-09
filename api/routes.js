@@ -1,5 +1,4 @@
-import { steeringGroups } from "./api-ou-service.js";
-import { degreeProgrammes, texts } from "./api-db.js";
+import { steeringGroups, degreeProgrammes, texts } from "./api-db.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 
 import apiSpecs from '../config/swagger.js'; // swagger config
