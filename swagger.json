@@ -5,14 +5,6 @@
     "description": "Organisation Registry Public API",
     "version": "1.0.0"
   },
-  "securityDefinitions": {
-    "Apikey": {
-      "description": "APIKey Auth",
-      "type": "apiKey",
-      "name": "X-Api-Key",
-      "in": "header"
-    }
-  },
   "paths": {
     "/public/v1/steeringGroups": {
       "get": {
@@ -37,6 +29,14 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "description": "APIKey Auth",
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
+      }
+    },
     "schemas": {
       "SteeringGroup": {
         "type": "object",
@@ -68,7 +68,7 @@
   },
   "security": [
     {
-      "Apikey": []
+      "apiKey": []
     }
   ]
 }
