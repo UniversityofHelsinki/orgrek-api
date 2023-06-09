@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Organisation Registry Public API",
+    "description": "Organisation Registry Public API",
+    "version": "1.0.0"
+  },
+  "securityDefinitions": {
+    "Apikey": {
+      "description": "APIKey Auth",
+      "type": "apiKey",
+      "name": "X-Api-Key",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/public/v1/steeringGroups": {
+      "get": {
+        "summary": "GET public/v1/steeringGroups",
+        "operationId": "getSteeringGroups",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SteeringGroup": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Apikey": []
+    }
+  ]
+}
