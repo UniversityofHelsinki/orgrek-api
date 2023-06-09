@@ -8,6 +8,8 @@ RUN chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
+RUN node -v
+
 # EXPOSE PORT 8080
 EXPOSE 8080
 
