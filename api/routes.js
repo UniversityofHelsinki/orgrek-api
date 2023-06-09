@@ -1,8 +1,9 @@
 import { steeringGroups, degreeProgrammes, texts } from "./api-db.js";
 import { API_VERSION_1 } from '../utils/constants.js';
+import { readFileSync } from "fs";
 
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../swagger.json' assert { type: "json" };
+const swaggerDocument = JSON.parse(readFileSync('./swagger.json'));
 
 const router = (router) => {
 
