@@ -1,33 +1,21 @@
 import { steeringGroups, degreeProgrammes, texts } from "./api-db.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 
-import apiSpecs from '../config/swagger.js'; // swagger config
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger.json' assert { type: "json" };
 
 const router = (router) => {
+
+    router.use(`/${API_VERSION_1}/swagger/document`, swaggerUi.serve);
+    router.get(`/${API_VERSION_1}/swagger/document`, swaggerUi.setup(swaggerDocument));
 
     // return swagger.json so api-gateway can create swagger configuration based on this file
     router.get(`/${API_VERSION_1}/docs/swagger.json`, (req, res) => {
         res.setHeader('Content-Type', 'application/json');
-        res.send(apiSpecs);
+        res.send(swaggerDocument);
     });
 
-    /**
-     * @swagger
-     *     /v1/degreeProgrammes/steeringGroups:
-     *     get:
-     *       security:
-     *         - Apikey: []
-     *       tags:
-     *         - retrieve
-     *       summary: Returns all steeringGroups for degree programmes
-     *       description: Returns all steering groups for degree programmes
-     *       responses:
-     *         200:
-     *           description: all steering groups
-     *         default:
-     *           description: Unexpected error
-     */
-    router.get(`/${API_VERSION_1}/degreeProgrammes/steeringGroups`, steeringGroups);
+    router.get(`/${API_VERSION_1}/steeringGroups`, steeringGroups);
 
     router.get(`/${API_VERSION_1}/degreeProgrammes/:id`, degreeProgrammes);
 
