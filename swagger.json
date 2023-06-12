@@ -26,6 +26,27 @@
           }
         }
       }
+    },
+    "/public/v1/humanResources": {
+      "get": {
+        "summary": "GET public/v1/humanResources",
+        "operationId": "getHumanResources",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
