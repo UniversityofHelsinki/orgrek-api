@@ -1,4 +1,4 @@
-import { steeringGroups, degreeProgrammes, texts } from "./api-db.js";
+import { steeringGroups, degreeProgrammes, humanResources, texts } from "./api-db.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 import { readFileSync } from "fs";
 
@@ -19,6 +19,7 @@ const router = (router) => {
     router.get(`/${API_VERSION_1}/steeringGroups`, steeringGroups);
 
     router.get(`/${API_VERSION_1}/degreeProgrammes/:id`, degreeProgrammes);
+    router.get(`/${API_VERSION_1}/humanResources`, humanResources);
 
     router.get(`/${API_VERSION_1}/texts`, texts);
 
