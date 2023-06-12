@@ -6,9 +6,9 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/public/v1/steeringGroups": {
+    "/v1/steeringGroups": {
       "get": {
-        "summary": "GET public/v1/steeringGroups",
+        "summary": "GET v1/steeringGroups",
         "operationId": "getSteeringGroups",
         "responses": {
           "200": {
@@ -19,6 +19,11 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Steering Group Example" : {
+                    "$ref": "#/components/examples/SteeringGroupExample"
                   }
                 }
               }
@@ -56,6 +61,21 @@
         "type": "apiKey",
         "name": "X-Api-Key",
         "in": "header"
+      }
+    },
+    "examples": {
+      "SteeringGroupExample" : {
+        "value": [
+          {
+            "uniqueId": "16549737",
+            "code": null,
+            "type": "kansio",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Faculty of Medicine",
+            "nameSv": "Medicinska fakulteten",
+            "parent": null
+          }
+        ]
       }
     },
     "schemas": {
