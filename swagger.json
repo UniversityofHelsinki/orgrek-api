@@ -32,9 +32,9 @@
         }
       }
     },
-    "/public/v1/humanResources": {
+    "/v1/humanResources": {
       "get": {
-        "summary": "GET public/v1/humanResources",
+        "summary": "GET v1/humanResources",
         "operationId": "getHumanResources",
         "responses": {
           "200": {
@@ -45,6 +45,11 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/HumanResourcesExample"
                   }
                 }
               }
@@ -73,6 +78,19 @@
             "nameFi": "Lääketieteellinen tiedekunta",
             "nameEn": "Faculty of Medicine",
             "nameSv": "Medicinska fakulteten",
+            "parent": null
+          }
+        ]
+      },
+      "HumanResourcesExample" : {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "H01",
+            "type": "yritys_yhteiso",
+            "nameFi": "Yliopistopalvelut",
+            "nameEn": "Yliopistopalvelut EN",
+            "nameSv": "Yliopistopalvelut SV",
             "parent": null
           }
         ]
