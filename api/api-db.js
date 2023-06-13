@@ -37,3 +37,14 @@ export const steeringGroups = async (req, res) => {
     }
 };
 
+export const humanResources = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/humanResources`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
