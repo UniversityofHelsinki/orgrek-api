@@ -25,7 +25,7 @@ setup:
   tags:
     - ohtu-build-3
   script:
-    - sudo npm cache clean --force
+    - npm cache clean --force
     - npm ci
   extends: .dependencies_cache
   cache:
