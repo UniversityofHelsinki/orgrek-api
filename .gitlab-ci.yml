@@ -25,8 +25,8 @@ setup:
   tags:
     - ohtu-build-3
   script:
-    - npm cache clean --force
     - npm ci
+    - npm cache clean --force
   extends: .dependencies_cache
   cache:
     policy: pull-push
