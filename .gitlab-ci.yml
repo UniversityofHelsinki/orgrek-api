@@ -59,8 +59,6 @@ deploy_dev:
     - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc set env dc/organisaatiorekisteri-api-dev TZ="Europe/Helsinki"
-    # Create a build configuration based on the source code in the current Git repository (with a public remote) and a container image:
-    - oc new-build --name=organisaatiorekisteri-api-dev --strategy=docker  .
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-dev --from-dir=. --follow
     # patch openshift buildConfig file
