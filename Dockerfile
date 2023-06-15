@@ -5,7 +5,6 @@ RUN adduser node root
 COPY . /home/node/app
 RUN chmod -R 755 /home/node/app
 RUN chown -R node:node /home/node/app
-RUN chown -R node:node /.npm
 
 WORKDIR /home/node/app
 
