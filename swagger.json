@@ -135,6 +135,32 @@
           }
         }
       }
+    },
+    "/v1/officialUnits": {
+      "get": {
+        "summary": "GET v1/officialUnits",
+        "operationId": "getOfficialUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/OfficialUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -209,6 +235,19 @@
             "nameEn": "Doctoral Programme in Drug Research",
             "nameSv": "Doktorandprogrammet i läkemedelsforskning",
             "parent": null
+          }
+        ]
+      },
+      "OfficialUnitsExample" : {
+        "value": [
+          {
+            "uniqueId": "12312312",
+            "code": "LTDK",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "parent": "98765432"
           }
         ]
       }

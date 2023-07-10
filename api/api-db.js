@@ -84,3 +84,15 @@ export const educationUnits = async (req, res) => {
       console.log(err);
     }
 };
+
+export const officialUnits = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/officialUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+}
