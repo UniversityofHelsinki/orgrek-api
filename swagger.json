@@ -84,10 +84,10 @@
         }
       }
     },
-    "/v1/finance": {
+    "/v1/financeUnits": {
       "get": {
-        "summary": "GET v1/finance",
-        "operationId": "getFinance",
+        "summary": "GET v1/financeUnits",
+        "operationId": "getFinanceUnits",
         "responses": {
           "200": {
             "description": "OK",
@@ -101,7 +101,33 @@
                 },
                 "examples": {
                   "Human Resources Example" : {
-                    "$ref": "#/components/examples/FinanceExample"
+                    "$ref": "#/components/examples/FinanceUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/educationUnits": {
+      "get": {
+        "summary": "GET v1/educationUnits",
+        "operationId": "getEducationUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/EducationUnitsExample"
                   }
                 }
               }
@@ -160,7 +186,7 @@
           }
         ]
       },
-      "ResearchGroupsExample" : {
+      "FinanceUnitsExample" : {
         "value": [
           {
             "uniqueId": "77096679",
@@ -169,6 +195,19 @@
             "nameFi": "Helsingin yliopisto",
             "nameEn": "University of Helsinki",
             "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "EducationUnitsExample" : {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tohtoriohjelma",
+            "nameFi": "Lääketutkimus tohtoriohjelma",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
             "parent": null
           }
         ]

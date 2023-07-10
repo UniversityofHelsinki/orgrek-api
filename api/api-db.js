@@ -61,9 +61,21 @@ export const researchGroups = async (req, res) => {
     }
 };
 
-export const finance = async (req, res) => {
+export const financeUnits = async (req, res) => {
     try {
-      const response = await fetch(`${apiDbHost}/api/public/finance`, {
+      const response = await fetch(`${apiDbHost}/api/public/financeUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const educationUnits = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/educationUnits`, {
         method: 'GET',
       });
       const data = await response.json();
