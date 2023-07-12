@@ -48,3 +48,51 @@ export const humanResources = async (req, res) => {
       console.log(err);
     }
 };
+
+export const researchGroups = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/researchGroups`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const financeUnits = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/financeUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const educationUnits = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/educationUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const officialUnits = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/officialUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+}

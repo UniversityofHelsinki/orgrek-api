@@ -57,6 +57,110 @@
           }
         }
       }
+    },
+    "/v1/researchGroups": {
+      "get": {
+        "summary": "GET v1/researchGroups",
+        "operationId": "getResearchGroups",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/ResearchGroupsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/financeUnits": {
+      "get": {
+        "summary": "GET v1/financeUnits",
+        "operationId": "getFinanceUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/FinanceUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/educationUnits": {
+      "get": {
+        "summary": "GET v1/educationUnits",
+        "operationId": "getEducationUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/EducationUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/officialUnits": {
+      "get": {
+        "summary": "GET v1/officialUnits",
+        "operationId": "getOfficialUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SteeringGroup"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/OfficialUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -92,6 +196,58 @@
             "nameEn": "Yliopistopalvelut EN",
             "nameSv": "Yliopistopalvelut SV",
             "parent": null
+          }
+        ]
+      },
+      "ResearchGroupsExample" : {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tutkimusryhma",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "FinanceUnitsExample" : {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tulosyksikko",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "EducationUnitsExample" : {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tohtoriohjelma",
+            "nameFi": "Lääketutkimus tohtoriohjelma",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "parent": null
+          }
+        ]
+      },
+      "OfficialUnitsExample" : {
+        "value": [
+          {
+            "uniqueId": "12312312",
+            "code": "LTDK",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "parent": "98765432"
           }
         ]
       }
