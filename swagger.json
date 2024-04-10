@@ -96,12 +96,38 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/FinanceUnit"
                   }
                 },
                 "examples": {
-                  "Human Resources Example" : {
+                  "Finance unit example" : {
                     "$ref": "#/components/examples/FinanceUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/financeUnitsPublic": {
+      "get": {
+        "summary": "GET v1/financeUnitsPublic",
+        "operationId": "getFinanceUnitsPublic",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicFinanceUnit"
+                  }
+                },
+                "examples": {
+                  "Public finance unit example" : {
+                    "$ref": "#/components/examples/PublicFinanceUnitsExample"
                   }
                 }
               }
@@ -245,6 +271,20 @@
             "uniqueId": "77096679",
             "code": "HY",
             "type": "tulosyksikko",
+            "publicity": "kylla",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "PublicFinanceUnitsExample": {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tulosyksikko",
             "nameFi": "Helsingin yliopisto",
             "nameEn": "University of Helsinki",
             "nameSv": "Helsingfors universitet",
@@ -294,6 +334,58 @@
     },
     "schemas": {
       "SteeringGroup": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "FinanceUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicFinanceUnit": {
         "type": "object",
         "properties": {
           "uniqueId": {
