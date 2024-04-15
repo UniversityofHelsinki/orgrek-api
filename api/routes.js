@@ -1,4 +1,4 @@
-import { steeringGroups, degreeProgrammes, humanResources, texts, researchGroups, financeUnits, educationUnits, officialUnits, concernGroups } from "./api-db.js";
+import { steeringGroups, degreeProgrammes, humanResources, texts, researchGroups, financeUnits, financeUnitsPublic, educationUnits, officialUnits, concernGroups } from "./api-db.js";
 import { API_VERSION_1 } from '../utils/constants.js';
 import { readFileSync } from "fs";
 
@@ -22,6 +22,7 @@ const router = (router) => {
     router.get(`/${API_VERSION_1}/humanResources`, humanResources);
     router.get(`/${API_VERSION_1}/researchGroups`, researchGroups);
     router.get(`/${API_VERSION_1}/financeUnits`, financeUnits);
+    router.get(`/${API_VERSION_1}/financeUnitsPublic`, financeUnitsPublic);
     router.get(`/${API_VERSION_1}/educationUnits`, educationUnits);
     router.get(`/${API_VERSION_1}/officialUnits`, officialUnits);
     router.get(`/${API_VERSION_1}/UniversityOfHelsinkiGroup`, concernGroups);
