@@ -84,12 +84,12 @@ deploy_test:
     - oc delete secret generic hy-organisation-application-api-key-test --ignore-not-found
     - oc create secret generic hy-organisation-application-api-key-test --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
     # list environment variables here
-    - oc set env --from=secret/hy-organisation-application-api-key-test deployment/organisaatiorekisteri-api-test
-    - oc set env deployment/organisaatiorekisteri-api-test API_DB_HOST=$API_DB_HOST_TEST
-    - oc set env deployment/organisaatiorekisteri-api-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
-    - oc set env deployment/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
-    - oc set env deployment/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
-    - oc set env deployment/organisaatiorekisteri-api-test TZ="Europe/Helsinki"
+    - oc set env --from=secret/hy-organisation-application-api-key-test deploy/organisaatiorekisteri-api-test
+    - oc set env deploy/organisaatiorekisteri-api-test API_DB_HOST=$API_DB_HOST_TEST
+    - oc set env deploy/organisaatiorekisteri-api-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
+    - oc set env deploy/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env deploy/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env deploy/organisaatiorekisteri-api-test TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-test --from-dir=. --follow
     # patch openshift buildConfig file
