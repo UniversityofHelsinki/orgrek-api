@@ -73,6 +73,30 @@ export const financeUnits = async (req, res) => {
     }
 };
 
+export const financeUnitsV2 = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/financeUnitsWithUniqueCode`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const financeUnitsWithUniqueCodeExclusive = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/financeUnitsWithUniqueCodeExclusive`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
 export const financeUnitsPublic = async (req, res) => {
   try {
     const response = await fetch(`${apiDbHost}/api/public/financeUnitsPublic`, {
@@ -121,3 +145,4 @@ export const concernGroups = async (req, res) => {
       console.log(err);
     }
 };
+
