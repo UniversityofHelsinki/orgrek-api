@@ -54,12 +54,12 @@ deploy_dev:
     - oc delete secret generic hy-organisation-application-api-key-dev --ignore-not-found
     - oc create secret generic hy-organisation-application-api-key-dev --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
     # list environment variables here
-    - oc set env --from=secret/hy-organisation-application-api-key-dev dc/organisaatiorekisteri-api-dev
-    - oc set env dc/organisaatiorekisteri-api-dev API_DB_HOST=$API_DB_HOST_DEV
-    - oc set env dc/organisaatiorekisteri-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
-    - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
-    - oc set env dc/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
-    - oc set env dc/organisaatiorekisteri-api-dev TZ="Europe/Helsinki"
+    - oc set env --from=secret/hy-organisation-application-api-key-dev deploy/organisaatiorekisteri-api-dev
+    - oc set env deploy/organisaatiorekisteri-api-dev API_DB_HOST=$API_DB_HOST_DEV
+    - oc set env deploy/organisaatiorekisteri-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
+    - oc set env deploy/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env deploy/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env deploy/organisaatiorekisteri-api-dev TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-dev --from-dir=. --follow
     # patch openshift buildConfig file
@@ -84,12 +84,12 @@ deploy_test:
     - oc delete secret generic hy-organisation-application-api-key-test --ignore-not-found
     - oc create secret generic hy-organisation-application-api-key-test --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
     # list environment variables here
-    - oc set env --from=secret/hy-organisation-application-api-key-test dc/organisaatiorekisteri-api-test
-    - oc set env dc/organisaatiorekisteri-api-test API_DB_HOST=$API_DB_HOST_TEST
-    - oc set env dc/organisaatiorekisteri-api-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
-    - oc set env dc/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
-    - oc set env dc/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
-    - oc set env dc/organisaatiorekisteri-api-test TZ="Europe/Helsinki"
+    - oc set env --from=secret/hy-organisation-application-api-key-test deploy/organisaatiorekisteri-api-test
+    - oc set env deploy/organisaatiorekisteri-api-test API_DB_HOST=$API_DB_HOST_TEST
+    - oc set env deploy/organisaatiorekisteri-api-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
+    - oc set env deploy/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env deploy/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env deploy/organisaatiorekisteri-api-test TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-test --from-dir=. --follow
     # patch openshift buildConfig file
@@ -115,12 +115,12 @@ deploy_prod:
     - oc delete secret generic hy-organisation-application-api-key-prod --ignore-not-found
     - oc create secret generic hy-organisation-application-api-key-prod --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_PROD_API_KEY
     # list environment variables here
-    - oc set env --from=secret/hy-organisation-application-api-key-prod dc/organisaatiorekisteri-api-prod
-    - oc set env dc/organisaatiorekisteri-api-prod API_DB_HOST=$API_DB_HOST_PROD
-    - oc set env dc/organisaatiorekisteri-api-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
-    - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
-    - oc set env dc/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
-    - oc set env dc/organisaatiorekisteri-api-prod TZ="Europe/Helsinki"
+    - oc set env --from=secret/hy-organisation-application-api-key-prod deploy/organisaatiorekisteri-api-prod
+    - oc set env deploy/organisaatiorekisteri-api-prod API_DB_HOST=$API_DB_HOST_PROD
+    - oc set env deploy/organisaatiorekisteri-api-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
+    - oc set env deploy/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env deploy/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env deploy/organisaatiorekisteri-api-prod TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-prod --from-dir=. --follow
     # patch openshift buildConfig file
@@ -145,12 +145,12 @@ deploy_organisation_dev:
     - oc delete secret generic hy-organisation-application-api-key-dev --ignore-not-found
     - oc create secret generic hy-organisation-application-api-key-dev --from-literal=HY_ORGANISATION_APPLICATION_API_KEY=$HY_ORGANISATION_APPLICATION_TEST_API_KEY
     # list environment variables here
-    - oc set env --from=secret/hy-organisation-application-api-key-dev dc/organisation-api-dev
-    - oc set env dc/organisation-api-dev API_DB_HOST=$API_DB_HOST_ORGANISATION_DEV
-    - oc set env dc/organisation-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_ORGANISATION_DEV
-    - oc set env dc/organisation-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
-    - oc set env dc/organisation-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
-    - oc set env dc/organisation-api-dev TZ="Europe/Helsinki"
+    - oc set env --from=secret/hy-organisation-application-api-key-dev deploy/organisation-api-dev
+    - oc set env deploy/organisation-api-dev API_DB_HOST=$API_DB_HOST_ORGANISATION_DEV
+    - oc set env deploy/organisation-api-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_ORGANISATION_DEV
+    - oc set env deploy/organisation-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env deploy/organisation-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env deploy/organisation-api-dev TZ="Europe/Helsinki"
     # start build process in OpenShift
     - oc start-build organisation-api-dev --from-dir=. --follow
     # patch openshift buildConfig file
