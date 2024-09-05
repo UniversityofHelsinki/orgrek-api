@@ -58,6 +58,32 @@
         }
       }
     },
+    "/v1/humanResourcesIamGroupPrefix": {
+      "get": {
+        "summary": "GET v1/humanResourcesIamGroupPrefix",
+        "operationId": "getHumanResourcesIamGroupPrefix",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HumanResourcesIamGroupPrefix"
+                  }
+                },
+                "examples": {
+                  "Human Resources Iam Group Prefix Example" : {
+                    "$ref": "#/components/examples/HumanResourcesIamGroupPrefixExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/researchGroups": {
       "get": {
         "summary": "GET v1/researchGroups",
@@ -304,6 +330,30 @@
           }
         ]
       },
+      "HumanResourcesIamGroupPrefixExample": {
+        "value": [
+          {
+            "uniqueId": "32132131",
+            "code": "H123",
+            "type": "henkilosto-osa-alue",
+            "nameFi": "Tutkimusohjelmayksikkö",
+            "nameEn": "Research Programs Unit",
+            "nameSv": "Forskningsprogramenheten",
+            "iamGroupPrefix": "hy-ltdk-rpu",
+            "parent": "43434233"
+          },
+          {
+            "uniqueId": "12312312",
+            "code": "HY",
+            "type": "yritys_yhteiso",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "iamGroupPrefix": null,
+            "parent": null
+          }
+        ]
+      },
       "ResearchGroupsExample" : {
         "value": [
           {
@@ -362,12 +412,23 @@
       "EducationUnitsExample" : {
         "value": [
           {
-            "uniqueId": "77096679",
-            "code": "HY",
-            "type": "tohtoriohjelma",
-            "nameFi": "Lääketutkimus tohtoriohjelma",
-            "nameEn": "Doctoral Programme in Drug Research",
-            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "uniqueId": "12345678",
+            "code": "444-M00",
+            "abbreviation": "TRA",
+            "type": "maisteriohjelma",
+            "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
+            "nameEn": "Master's Programme in Translation and Interpreting",
+            "nameSv": "Magisterprogrammet i översättning och tolkning",
+            "parent": "11112222"
+          },
+          {
+            "uniqueId": "87654321",
+            "code": "01",
+            "abbreviation": "HY",
+            "type": "yritys_yhteiso",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
             "parent": null
           }
         ]
@@ -428,6 +489,35 @@
             "type": "string"
           },
           "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "HumanResourcesIamGroupPrefix": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "iamGroupPrefix": {
             "type": "string"
           },
           "parent": {
