@@ -49,6 +49,18 @@ export const humanResources = async (req, res) => {
     }
 };
 
+export const humanResourcesIamGroupPrefix = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/humanResourcesIamGroupPrefix`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
 export const researchGroups = async (req, res) => {
     try {
       const response = await fetch(`${apiDbHost}/api/public/researchGroups`, {
