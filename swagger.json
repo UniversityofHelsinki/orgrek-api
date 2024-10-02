@@ -58,6 +58,32 @@
         }
       }
     },
+    "/v1/humanResourcesIamGroupPrefix": {
+      "get": {
+        "summary": "GET v1/humanResourcesIamGroupPrefix",
+        "operationId": "getHumanResourcesIamGroupPrefix",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HumanResourcesIamGroupPrefix"
+                  }
+                },
+                "examples": {
+                  "Human Resources Iam Group Prefix Example" : {
+                    "$ref": "#/components/examples/HumanResourcesIamGroupPrefixExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/researchGroups": {
       "get": {
         "summary": "GET v1/researchGroups",
@@ -96,12 +122,90 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/FinanceUnit"
                   }
                 },
                 "examples": {
-                  "Human Resources Example" : {
+                  "Finance unit example" : {
                     "$ref": "#/components/examples/FinanceUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/financeUnits": {
+      "get": {
+        "summary": "GET v2/financeUnits",
+        "operationId": "getFinanceUnitsWithPublicCode",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinanceUnitWithUniqueCode"
+                  }
+                },
+                "examples": {
+                  "Finance unit example" : {
+                    "$ref": "#/components/examples/FinanceUnitsWithPublicCodeExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/financeUnitsPublic": {
+      "get": {
+        "summary": "GET v1/financeUnitsPublic",
+        "operationId": "getFinanceUnitsPublic",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicFinanceUnit"
+                  }
+                },
+                "examples": {
+                  "Public finance unit example" : {
+                    "$ref": "#/components/examples/PublicFinanceUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/financeUnitsUniqueCode": {
+      "get": {
+        "summary": "GET v1/financeUnits having unique_code = \"kylla\"",
+        "operationId": "getFinanceUnitsWithPublicCodeExclusive",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinanceUnitWithUniqueCode"
+                  }
+                },
+                "examples": {
+                  "Finance unit example" : {
+                    "$ref": "#/components/examples/FinanceUnitsWithPublicCodeExample"
                   }
                 }
               }
@@ -148,7 +252,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/OfficialUnit"
                   }
                 },
                 "examples": {
@@ -226,6 +330,30 @@
           }
         ]
       },
+      "HumanResourcesIamGroupPrefixExample": {
+        "value": [
+          {
+            "uniqueId": "32132131",
+            "code": "H123",
+            "type": "henkilosto-osa-alue",
+            "nameFi": "Tutkimusohjelmayksikkö",
+            "nameEn": "Research Programs Unit",
+            "nameSv": "Forskningsprogramenheten",
+            "iamGroupPrefix": "hy-ltdk-rpu",
+            "parent": "43434233"
+          },
+          {
+            "uniqueId": "12312312",
+            "code": "HY",
+            "type": "yritys_yhteiso",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "iamGroupPrefix": null,
+            "parent": null
+          }
+        ]
+      },
       "ResearchGroupsExample" : {
         "value": [
           {
@@ -245,6 +373,35 @@
             "uniqueId": "77096679",
             "code": "HY",
             "type": "tulosyksikko",
+            "publicity": "kylla",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "PublicFinanceUnitsExample": {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tulosyksikko",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "FinanceUnitsWithPublicCodeExample" : {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "code": "HY",
+            "type": "tulosyksikko",
+            "publicity": "kylla",
+            "uniqueCode": "kylla",
             "nameFi": "Helsingin yliopisto",
             "nameEn": "University of Helsinki",
             "nameSv": "Helsingfors universitet",
@@ -255,12 +412,23 @@
       "EducationUnitsExample" : {
         "value": [
           {
-            "uniqueId": "77096679",
-            "code": "HY",
-            "type": "tohtoriohjelma",
-            "nameFi": "Lääketutkimus tohtoriohjelma",
-            "nameEn": "Doctoral Programme in Drug Research",
-            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "uniqueId": "12345678",
+            "code": "444-M00",
+            "abbreviation": "TRA",
+            "type": "maisteriohjelma",
+            "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
+            "nameEn": "Master's Programme in Translation and Interpreting",
+            "nameSv": "Magisterprogrammet i översättning och tolkning",
+            "parent": "11112222"
+          },
+          {
+            "uniqueId": "87654321",
+            "code": "01",
+            "abbreviation": "HY",
+            "type": "yritys_yhteiso",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
             "parent": null
           }
         ]
@@ -269,11 +437,20 @@
         "value": [
           {
             "uniqueId": "12312312",
-            "code": "LTDK",
             "type": "tiedekunta",
             "nameFi": "Lääketieteellinen tiedekunta",
             "nameEn": "Doctoral Programme in Drug Research",
             "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "abbreviation": "LÄÄK",
+            "parent": "98765432"
+          },
+          {
+            "uniqueId": "32131231",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "abbreviation": null,
             "parent": "98765432"
           }
         ]
@@ -312,6 +489,142 @@
             "type": "string"
           },
           "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "HumanResourcesIamGroupPrefix": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "iamGroupPrefix": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "FinanceUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "FinanceUnitWithUniqueCode": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "string"
+          },
+          "uniqueCode": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicFinanceUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "OfficialUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
             "type": "string"
           },
           "parent": {
