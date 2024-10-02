@@ -51,7 +51,7 @@ dependency-check:
   script:
     - >
       /usr/share/dependency-check/bin/dependency-check.sh
-      --project orgrek-ou-service --scan .
+      --project orgrek-api --scan .
       --format JSON --format HTML  -nvdApiKey $NVD_API_KEY
   artifacts:
     when: always
