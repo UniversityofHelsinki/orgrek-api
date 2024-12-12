@@ -84,10 +84,10 @@
         }
       }
     },
-    "/v1/researchGroups": {
+    "/v1/researchResources": {
       "get": {
-        "summary": "GET v1/researchGroups",
-        "operationId": "getResearchGroups",
+        "summary": "GET v1/researchResources",
+        "operationId": "getResearchResources",
         "responses": {
           "200": {
             "description": "OK",
@@ -96,12 +96,12 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/ResearchResource"
                   }
                 },
                 "examples": {
                   "Human Resources Example" : {
-                    "$ref": "#/components/examples/ResearchGroupsExample"
+                    "$ref": "#/components/examples/ResearchResourcesExample"
                   }
                 }
               }
@@ -354,16 +354,25 @@
           }
         ]
       },
-      "ResearchGroupsExample" : {
+      "ResearchResourcesExample" : {
         "value": [
           {
-            "uniqueId": "77096679",
-            "code": "HY",
+            "uniqueId": "12345678",
+            "unitStartDate": "yyyy-MM-dd",
             "type": "tutkimusryhma",
-            "nameFi": "Helsingin yliopisto",
-            "nameEn": "University of Helsinki",
-            "nameSv": "Helsingfors universitet",
-            "parent": null
+            "nameFi": "Psykologia",
+            "nameEn": "Psychology",
+            "nameSv": "Psykologi",
+            "parent": "87654321"
+          },
+          {
+            "nameFi" : "Helsingin yliopisto",
+            "nameEn" : "University of Helsinki",
+            "nameSv" : "Helsingfors universitet",
+            "uniqueId" : "87654321",
+            "parent" : null,
+            "type" : "yritys_yhteiso",
+            "unitStartDate" : "1640-03-26"
           }
         ]
       },
@@ -625,6 +634,32 @@
             "type": "string"
           },
           "abbreviation": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "ResearchResource": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "unitStartDate": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
             "type": "string"
           },
           "parent": {

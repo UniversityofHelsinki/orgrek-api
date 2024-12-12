@@ -61,9 +61,9 @@ export const humanResourcesIamGroupPrefix = async (req, res) => {
     }
 };
 
-export const researchGroups = async (req, res) => {
+export const researchResources = async (req, res) => {
     try {
-      const response = await fetch(`${apiDbHost}/api/public/researchGroups`, {
+      const response = await fetch(`${apiDbHost}/api/public/researchResources`, {
         method: 'GET',
       });
       const data = await response.json();
