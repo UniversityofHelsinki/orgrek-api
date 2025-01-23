@@ -158,3 +158,15 @@ export const concernGroups = async (req, res) => {
     }
 };
 
+export const NodesInMultipleHierarchies = async (req, res) => {
+    const { hierarchy } = req.query;
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/NodesInMultipleHierarchies?hierarchy=${hierarchy}`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};

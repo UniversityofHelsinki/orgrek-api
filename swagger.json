@@ -226,7 +226,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/EducationUnit"
                   }
                 },
                 "examples": {
@@ -285,6 +285,50 @@
                   "Human Resources Example" : {
                     "$ref": "#/components/examples/ConcernGroupExample"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/NodesInMultipleHierarchies": {
+      "get": {
+        "summary": "Fetch nodes in given public hierarchies.",
+        "operationId": "getNodesInMultipleHierarchies",
+        "parameters": [{
+          "in": "query",
+          "name": "hierarchy",
+          "type": "string",
+          "required": true,
+          "description": "Comma separated list of public hierarchies to fetch (e.g. virallinen,opetus,talous,henkilosto)"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicHierarchyNode"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/PublicHierarchyNodesExample"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "'hierarchy' parameter included unknown or private hierarchies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Request parameter 'hierarchy' can only contain public hierarchies."
                 }
               }
             }
@@ -428,16 +472,18 @@
             "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
             "nameEn": "Master's Programme in Translation and Interpreting",
             "nameSv": "Magisterprogrammet i översättning och tolkning",
+            "educationQualifier": "rinnakkainen-koulutusohjelma",
             "parent": "11112222"
           },
           {
             "uniqueId": "87654321",
             "code": "01",
-            "abbreviation": "HY",
-            "type": "yritys_yhteiso",
+            "abbreviation": null,
+            "type": "kansio",
             "nameFi": "Helsingin yliopisto",
             "nameEn": "University of Helsinki",
             "nameSv": "Helsingfors universitet",
+            "educationQualifier": null,
             "parent": null
           }
         ]
@@ -451,6 +497,7 @@
             "nameEn": "Doctoral Programme in Drug Research",
             "nameSv": "Doktorandprogrammet i läkemedelsforskning",
             "abbreviation": "LÄÄK",
+            "educationQualifier": "tilauskoulutus",
             "parent": "98765432"
           },
           {
@@ -459,6 +506,7 @@
             "nameFi": "Lääketieteellinen tiedekunta",
             "nameEn": "Doctoral Programme in Drug Research",
             "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "educationQualifier": null,
             "abbreviation": null,
             "parent": "98765432"
           }
@@ -475,6 +523,28 @@
             "nameSv": "Helsingfors Universitets fastighetsservice Ab",
             "parent": null
           }
+        ]
+      },
+      "PublicHierarchyNodesExample": {
+        "value": [
+           {
+              "nameEn" : "University of Helsinki",
+              "nameFi" : "Helsingin yliopisto",
+              "nameSv" : "Helsingfors universitet",
+              "uniqueId" : "42785051"
+           },
+           {
+              "nameEn" : "Biological stations",
+              "nameFi" : "Biologiset asemat",
+              "nameSv" : "Biologiska stationer",
+              "uniqueId" : "62570520"
+           },
+           {
+              "nameEn" : "Medicum",
+              "nameFi" : "Medicum",
+              "nameSv" : "Medicum",
+              "uniqueId" : "81552327"
+           }
         ]
       }
     },
@@ -636,6 +706,9 @@
           "abbreviation": {
             "type": "string"
           },
+          "educationQualifier": {
+            "type": "string"
+          },
           "parent": {
             "type": "string"
           }
@@ -660,6 +733,55 @@
             "type": "string"
           },
           "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicHierarchyNode": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          }
+        }
+      },
+      "EducationUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "educationQualifier": {
             "type": "string"
           },
           "parent": {
