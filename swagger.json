@@ -257,7 +257,7 @@
                 },
                 "examples": {
                   "Human Resources Example" : {
-                    "$ref": "#/components/examples/EducationUnitsV2Example"
+                    "$ref": "#/components/examples/EducationUnitsExampleV2"
                   }
                 }
               }
