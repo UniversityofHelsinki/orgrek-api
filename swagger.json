@@ -240,6 +240,32 @@
         }
       }
     },
+    "/v2/educationUnits": {
+      "get": {
+        "summary": "GET v1/educationUnits",
+        "operationId": "getEducationUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EducationUnitV2"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/EducationUnitsV2Example"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/officialUnits": {
       "get": {
         "summary": "GET v1/officialUnits",
@@ -258,6 +284,32 @@
                 "examples": {
                   "Human Resources Example" : {
                     "$ref": "#/components/examples/OfficialUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/officialUnits": {
+      "get": {
+        "summary": "GET v1/officialUnits",
+        "operationId": "getOfficialUnits",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficialUnitV2"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/OfficialUnitsExampleV2"
                   }
                 }
               }
@@ -472,6 +524,30 @@
             "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
             "nameEn": "Master's Programme in Translation and Interpreting",
             "nameSv": "Magisterprogrammet i översättning och tolkning",
+            "parent": "11112222"
+          },
+          {
+            "uniqueId": "87654321",
+            "code": "01",
+            "abbreviation": null,
+            "type": "kansio",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "EducationUnitsExampleV2" : {
+        "value": [
+          {
+            "uniqueId": "12345678",
+            "code": "444-M00",
+            "abbreviation": "TRA",
+            "type": "maisteriohjelma",
+            "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
+            "nameEn": "Master's Programme in Translation and Interpreting",
+            "nameSv": "Magisterprogrammet i översättning och tolkning",
             "educationQualifier": "rinnakkainen-koulutusohjelma",
             "parent": "11112222"
           },
@@ -489,6 +565,28 @@
         ]
       },
       "OfficialUnitsExample" : {
+        "value": [
+          {
+            "uniqueId": "12312312",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "abbreviation": "LÄÄK",
+            "parent": "98765432"
+          },
+          {
+            "uniqueId": "32131231",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "abbreviation": null,
+            "parent": "98765432"
+          }
+        ]
+      },
+      "OfficialUnitsExampleV2" : {
         "value": [
           {
             "uniqueId": "12312312",
@@ -706,6 +804,32 @@
           "abbreviation": {
             "type": "string"
           },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "OfficialUnitV2": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
           "educationQualifier": {
             "type": "string"
           },
@@ -758,6 +882,35 @@
         }
       },
       "EducationUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "EducationUnitV2": {
         "type": "object",
         "properties": {
           "uniqueId": {
