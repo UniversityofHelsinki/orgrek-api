@@ -242,7 +242,7 @@
     },
     "/v2/educationUnits": {
       "get": {
-        "summary": "GET v1/educationUnits",
+        "summary": "GET v2/educationUnits",
         "operationId": "getEducationUnitsV2",
         "responses": {
           "200": {
