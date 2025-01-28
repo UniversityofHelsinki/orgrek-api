@@ -294,7 +294,7 @@
     },
     "/v2/officialUnits": {
       "get": {
-        "summary": "GET v1/officialUnits",
+        "summary": "GET v2/officialUnits",
         "operationId": "getOfficialUnitsV2",
         "responses": {
           "200": {
