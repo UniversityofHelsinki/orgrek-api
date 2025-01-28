@@ -134,9 +134,33 @@ export const educationUnits = async (req, res) => {
     }
 };
 
+export const educationUnitsV2 = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/educationUnitsWithEducationQualifier`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
 export const officialUnits = async (req, res) => {
     try {
       const response = await fetch(`${apiDbHost}/api/public/officialUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const officialUnitsV2 = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/officialUnitsWithEducationQualifier`, {
         method: 'GET',
       });
       const data = await response.json();
@@ -158,3 +182,15 @@ export const concernGroups = async (req, res) => {
     }
 };
 
+export const NodesInMultipleHierarchies = async (req, res) => {
+    const { hierarchy } = req.query;
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/NodesInMultipleHierarchies?hierarchy=${hierarchy}`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
