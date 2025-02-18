@@ -194,3 +194,15 @@ export const NodesInMultipleHierarchies = async (req, res) => {
       console.log(err);
     }
 };
+
+export const FinanceAndOldResearch = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/FinanceAndOldResearch`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
