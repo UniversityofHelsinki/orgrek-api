@@ -387,6 +387,32 @@
           }
         }
       }
+    },
+    "/v1/FinanceAndOldResearch": {
+      "get": {
+        "summary": "Fetch nodes in 'talous' and 'vanha_yksikko' hierarchies that have certain attributes",
+        "operationId": "getFinanceAndOldResearch",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinanceAndOldResearch"
+                  }
+                },
+                "examples": {
+                  "FinanceAndOldResearch example" : {
+                    "$ref": "#/components/examples/FinanceAndOldResearchExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
   },
@@ -642,6 +668,49 @@
               "nameFi" : "Medicum",
               "nameSv" : "Medicum",
               "uniqueId" : "81552327"
+           }
+        ]
+      },
+      "FinanceAndOldResearchExample": {
+        "value": [
+           {
+              "code": "HY",
+              "nameEn" : "University of Helsinki",
+              "nameFi" : "Helsingin yliopisto",
+              "nameSv" : "Helsingfors universitet",
+              "abbreviation": "hyh",
+              "parent": null,
+              "publicity": "kylla",
+              "type": "yritys_yhteiso",
+              "uniqueCode": "kylla",
+              "uniqueId" : "42785051",
+              "unitStartDate": "1640-03-26"
+           },
+           {
+             "code" : "H8230",
+             "nameEn" : "Hyytiälä Forestry Field Station",
+             "nameFi" : "Hyytiälän metsäasema",
+             "nameSv" : "Hyytiälä forststation ",
+             "abbreviation": null,
+             "parent" : "54032432",
+             "publicity" : "kylla",
+             "type" : "alayksikko",
+             "uniqueCode" : "kylla",
+             "uniqueId" : "61962952",
+             "unitStartDate" : null
+           },
+           {
+             "code" : null,
+             "nameEn" : "Unit",
+             "nameFi" : "Yksikkö",
+             "nameSv" : "Unit",
+             "abbreviation": null,
+             "parent" : "99999999",
+             "publicity" : "kylla",
+             "type" : "alayksikko",
+             "uniqueCode" : "kylla",
+             "uniqueId" : "99998888",
+             "unitStartDate" : null
            }
         ]
       }
@@ -935,6 +1004,41 @@
             "type": "string"
           },
           "educationQualifier": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "FinanceAndOldResearch": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "unitStartDate": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "string"
+          },
+          "uniqueCode": {
             "type": "string"
           },
           "parent": {

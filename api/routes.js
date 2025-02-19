@@ -1,4 +1,4 @@
-import { steeringGroups, degreeProgrammes, humanResources, humanResourcesIamGroupPrefix, texts, researchResources, financeUnits, financeUnitsPublic, educationUnits, educationUnitsV2, officialUnits, officialUnitsV2, concernGroups, financeUnitsV2, financeUnitsWithUniqueCodeExclusive, NodesInMultipleHierarchies } from "./api-db.js";
+import { steeringGroups, degreeProgrammes, humanResources, humanResourcesIamGroupPrefix, texts, researchResources, financeUnits, financeUnitsPublic, educationUnits, educationUnitsV2, officialUnits, officialUnitsV2, concernGroups, financeUnitsV2, financeUnitsWithUniqueCodeExclusive, NodesInMultipleHierarchies, FinanceAndOldResearch } from "./api-db.js";
 import { API_VERSION_1, API_VERSION_2 } from '../utils/constants.js';
 import { readFileSync } from "fs";
 
@@ -32,6 +32,8 @@ const router = (router) => {
     router.get(`/${API_VERSION_2}/officialUnits`, officialUnitsV2);
     router.get(`/${API_VERSION_1}/UniversityOfHelsinkiGroup`, concernGroups);
     router.get(`/${API_VERSION_1}/NodesInMultipleHierarchies`, NodesInMultipleHierarchies);
+
+    router.get(`/${API_VERSION_1}/FinanceAndOldResearch`, FinanceAndOldResearch);
 
     router.get(`/${API_VERSION_1}/texts`, texts);
 
