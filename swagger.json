@@ -675,6 +675,7 @@
         "value": [
            {
               "code": "HY",
+              "educationCode": null,
               "nameEn" : "University of Helsinki",
               "nameFi" : "Helsingin yliopisto",
               "nameSv" : "Helsingfors universitet",
@@ -688,6 +689,7 @@
            },
            {
              "code" : "H8230",
+             "educationCode": "1234",
              "nameEn" : "Hyytiälä Forestry Field Station",
              "nameFi" : "Hyytiälän metsäasema",
              "nameSv" : "Hyytiälä forststation ",
@@ -701,6 +703,7 @@
            },
            {
              "code" : null,
+             "educationCode": "H0123",
              "nameEn" : "Unit",
              "nameFi" : "Yksikkö",
              "nameSv" : "Unit",
@@ -1021,6 +1024,9 @@
             "type": "string"
           },
           "code": {
+            "type": "string"
+          },
+          "educationCode": {
             "type": "string"
           },
           "nameFi": {
