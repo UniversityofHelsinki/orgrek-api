@@ -413,6 +413,32 @@
           }
         }
       }
+    },
+    "/v1/PersonnelUnitMap": {
+      "get": {
+        "summary": "Fetch all personnel units under units that are neither 'henkilostoyksikko' nor 'kansio'",
+        "operationId": "getPersonnelUnitMap",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonnelUnitMap"
+                  }
+                },
+                "examples": {
+                  "PersonnelUnitMap example" : {
+                    "$ref": "#/components/examples/PersonnelUnitMap"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
   },
@@ -715,6 +741,20 @@
              "uniqueId" : "99998888",
              "unitStartDate" : null
            }
+        ]
+      },
+      "PersonnelUnitMap": {
+        "value": [
+          {
+            "subUnitCode": "H022",
+            "unitCode": "H01",
+            "unitName": "Yliopistopalvelut"
+          },
+          {
+            "subUnitCode": "H02201",
+            "unitCode": "H01",
+            "unitName": "Yliopistopalvelut"
+          }
         ]
       }
     },
@@ -1048,6 +1088,20 @@
             "type": "string"
           },
           "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "PersonnelUnitMap": {
+        "type": "object",
+        "properties": {
+          "subUnitCode": {
+            "type": "string"
+          },
+          "unitCode": {
+            "type": "string"
+          },
+          "unitName": {
             "type": "string"
           }
         }
