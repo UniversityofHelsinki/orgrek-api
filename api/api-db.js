@@ -206,3 +206,15 @@ export const FinanceAndOldResearch = async (req, res) => {
       console.log(err);
     }
 };
+
+export const personnelUnitMap = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/PersonnelUnitMap`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
