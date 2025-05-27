@@ -32,7 +32,7 @@ const router = (router) => {
     router.get(`/${API_VERSION_2}/officialUnits`, officialUnitsV2);
     router.get(`/${API_VERSION_1}/UniversityOfHelsinkiGroup`, concernGroups);
     router.get(`/${API_VERSION_1}/NodesInMultipleHierarchies`, NodesInMultipleHierarchies);
-    router.get(`/${API_VERSION_1}/PersonnelUnitMap`, personnelUnitMap);
+    router.get(`/${API_VERSION_1}/humanResourcesSubunitToUnit`, personnelUnitMap);
 
     router.get(`/${API_VERSION_1}/FinanceAndOldResearch`, FinanceAndOldResearch);
 
