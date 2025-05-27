@@ -414,9 +414,9 @@
         }
       }
     },
-    "/v1/PersonnelUnitMap": {
+    "/v1/humanResourcesSubunitToUnit": {
       "get": {
-        "summary": "Fetch all personnel units under units that are neither 'henkilostoyksikko' nor 'kansio'",
+        "summary": "Fetch certain units in human resources with their greatest parent",
         "operationId": "getPersonnelUnitMap",
         "responses": {
           "200": {
@@ -426,12 +426,12 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PersonnelUnitMap"
+                    "$ref": "#/components/schemas/humanResourcesSubunitToUnit"
                   }
                 },
                 "examples": {
                   "PersonnelUnitMap example" : {
-                    "$ref": "#/components/examples/PersonnelUnitMap"
+                    "$ref": "#/components/examples/humanResourcesSubunitToUnit"
                   }
                 }
               }
@@ -743,7 +743,7 @@
            }
         ]
       },
-      "PersonnelUnitMap": {
+      "humanResourcesSubunitToUnit": {
         "value": [
           {
             "subUnitCode": "H022",
@@ -1092,7 +1092,7 @@
           }
         }
       },
-      "PersonnelUnitMap": {
+      "humanResourcesSubunitToUnit": {
         "type": "object",
         "properties": {
           "subUnitCode": {
