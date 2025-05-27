@@ -417,7 +417,7 @@
     "/v1/humanResourcesSubunitToUnit": {
       "get": {
         "summary": "Fetch certain units in human resources with their greatest parent",
-        "operationId": "getPersonnelUnitMap",
+        "operationId": "getHUmanResourcesSubunitToUnit",
         "responses": {
           "200": {
             "description": "OK",
@@ -748,12 +748,12 @@
           {
             "subUnitCode": "H022",
             "unitCode": "H01",
-            "unitName": "Yliopistopalvelut"
+            "unitNameFi": "Yliopistopalvelut"
           },
           {
             "subUnitCode": "H02201",
             "unitCode": "H01",
-            "unitName": "Yliopistopalvelut"
+            "unitNameFi": "Yliopistopalvelut"
           }
         ]
       }
@@ -1096,13 +1096,16 @@
         "type": "object",
         "properties": {
           "subUnitCode": {
-            "type": "string"
+            "type": "string",
+            "description": "The hr_lyhenne of the sub unit"
           },
           "unitCode": {
-            "type": "string"
+            "type": "string",
+            "description": "The hr_lyhenne of the greatest parent of the sub unit"
           },
-          "unitName": {
-            "type": "string"
+          "unitNameFi": {
+            "type": "string",
+            "description": "The name_fi of the greatest parent fo the sub unit"
           }
         }
       }
