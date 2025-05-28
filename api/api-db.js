@@ -218,3 +218,15 @@ export const personnelUnitMap = async (req, res) => {
       console.log(err);
     }
 };
+
+export const konserniUnitMap = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/KonserniUnitMap`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};

@@ -439,6 +439,32 @@
           }
         }
       }
+    },
+    "/v1/UniversityOfHelsinkiSubunitToUnit": {
+      "get": {
+        "summary": "Fetch certain units in konserni with their greatest parent",
+        "operationId": "getUniversityOfHelsinkiSubunitToUnit",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UniversityOfHelsinkiSubunitToUnit"
+                  }
+                },
+                "examples": {
+                  "PersonnelUnitMap example" : {
+                    "$ref": "#/components/examples/UniversityOfHelsinkiSubunitToUnit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
   },
@@ -746,6 +772,11 @@
       "humanResourcesSubunitToUnit": {
         "value": [
           {
+            "subUnitCode": "H01",
+            "unitCode": "H01",
+            "unitNameFi": "Yliopistopalvelut"
+          },
+          {
             "subUnitCode": "H022",
             "unitCode": "H01",
             "unitNameFi": "Yliopistopalvelut"
@@ -754,6 +785,20 @@
             "subUnitCode": "H02201",
             "unitCode": "H01",
             "unitNameFi": "Yliopistopalvelut"
+          }
+        ]
+      },
+      "UniversityOfHelsinkiSubunitToUnit": {
+        "value": [
+          {
+            "subUnitCode": "KP",
+            "unitCode": "KP",
+            "unitNameFi": "Helsingin yliopiston kiinteistöpalvelut"
+          },
+          {
+            "subUnitCode": "KP01",
+            "unitCode": "KP",
+            "unitNameFi": "Helsingin yliopiston kiinteistöpalvelut"
           }
         ]
       }
@@ -1102,6 +1147,23 @@
           "unitCode": {
             "type": "string",
             "description": "The hr_lyhenne of the greatest parent of the sub unit"
+          },
+          "unitNameFi": {
+            "type": "string",
+            "description": "The name_fi of the greatest parent fo the sub unit"
+          }
+        }
+      },
+      "UniversityOfHelsinkiSubunitToUnit": {
+        "type": "object",
+        "properties": {
+          "subUnitCode": {
+            "type": "string",
+            "description": "The talous_tunnus of the sub unit"
+          },
+          "unitCode": {
+            "type": "string",
+            "description": "The talous_tunnus of the greatest parent of the sub unit"
           },
           "unitNameFi": {
             "type": "string",
