@@ -440,7 +440,7 @@
         }
       }
     },
-    "/v1/UniversiyOfHelsinkiSubunitToUnit": {
+    "/v1/UniversityOfHelsinkiSubunitToUnit": {
       "get": {
         "summary": "Fetch certain units in konserni with their greatest parent",
         "operationId": "getUniversityOfHelsinkiSubunitToUnit",
