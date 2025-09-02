@@ -230,3 +230,27 @@ export const konserniUnitMap = async (req, res) => {
       console.log(err);
     }
 };
+
+export const allNodeAttributes = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/AllNodeAttributes`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const allSuccessorsAndPredecessors = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/AllSuccessorsAndPredecessors`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
