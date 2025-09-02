@@ -465,8 +465,59 @@
           }
         }
       }
+    },
+    "/v1/AllNodeAttributes": {
+      "get": {
+        "summary": "Fetch all nodes' attributes",
+        "operationId": "getAllNodeAttributes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NodeAttribute"
+                  }
+                },
+                "examples": {
+                  "AllNodeAttributes example" : {
+                    "$ref": "#/components/examples/AllNodeAttributes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/AllSuccessorsAndPredecessors": {
+      "get": {
+        "summary": "Fetch all successors and predecessors",
+        "operationId": "getAllSuccessorsAndPredecessors",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AllSuccessorsAndPredecessors"
+                  }
+                },
+                "examples": {
+                  "AllSuccessorsAndPredecessors example" : {
+                    "$ref": "#/components/examples/AllSuccessorsAndPredecessors"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-
   },
   "components": {
     "securitySchemes": {
@@ -799,6 +850,40 @@
             "subUnitCode": "KP01",
             "unitCode": "KP",
             "unitNameFi": "Helsingin yliopiston kiinteistöpalvelut"
+          }
+        ]
+      },
+      "AllNodeAttributes": {
+        "value": [
+          {
+            "endDate": null,
+            "key": "name_sv",
+            "startDate": "2024-09-03",
+            "uniqueId": "100000048",
+            "value": "testbarnfakulten"
+          },
+          {
+            "endDate": null,
+            "key": "name_en",
+            "startDate": "2024-09-03",
+            "uniqueId": "100000048",
+            "value": "testchildfaculty"
+          }
+        ]
+      },
+      "AllSuccessorsAndPredecessors": {
+        "value": [
+          {
+            "endDate": null,
+            "predecessor": "18770",
+            "startDate": "2023-06-30",
+            "successor": "18488"
+          },
+          {
+            "endDate": null,
+            "predecessor": "32678",
+            "startDate": "2023-12-01",
+            "successor": "5935"
           }
         ]
       }
@@ -1168,6 +1253,44 @@
           "unitNameFi": {
             "type": "string",
             "description": "The name_fi of the greatest parent fo the sub unit"
+          }
+        }
+      },
+      "NodeAttribute": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "description": "The node of the attribute"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        }
+      },
+      "Edge": {
+        "type": "object",
+        "properties": {
+          "successor": {
+            "type": "string"
+          },
+          "predecessor": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
           }
         }
       }
