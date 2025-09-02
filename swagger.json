@@ -1277,7 +1277,7 @@
           }
         }
       },
-      "Edge": {
+      "AllSuccessorsAndPredecessors": {
         "type": "object",
         "properties": {
           "successor": {
