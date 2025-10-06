@@ -61,6 +61,19 @@ export const humanResourcesIamGroupPrefix = async (req, res) => {
     }
 };
 
+export const humanResourcesWithLevel = async (req, res) => {
+    const { level } = req.query;
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/humanResourcesWithLevel?level=${level || -1}`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
 export const researchResources = async (req, res) => {
     try {
       const response = await fetch(`${apiDbHost}/api/public/researchResources`, {
