@@ -417,7 +417,7 @@
     "/v1/humanResourcesSubunitToUnit": {
       "get": {
         "summary": "Fetch certain units in human resources with their greatest parent",
-        "operationId": "getHUmanResourcesSubunitToUnit",
+        "operationId": "getHumanResourcesSubunitToUnit",
         "responses": {
           "200": {
             "description": "OK",
@@ -432,6 +432,39 @@
                 "examples": {
                   "PersonnelUnitMap example" : {
                     "$ref": "#/components/examples/humanResourcesSubunitToUnit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/humanResourcesWithLevel": {
+      "get": {
+        "summary": "Fetch units in human resources and their level on the tree",
+        "operationId": "getHumanResourcesWithLevel",
+        "parameters": [{
+          "in": "query",
+          "name": "level",
+          "type": "integer",
+          "required": false,
+          "description": "Fetch hierarchies up to level or the whole tree if not set"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HumanResourcesWithLevel"
+                  }
+                },
+                "examples": {
+                  "Human Resources With level example" : {
+                    "$ref": "#/components/examples/HumanResourcesWithLevel"
                   }
                 }
               }
@@ -576,6 +609,30 @@
             "nameSv": "Helsingfors universitet",
             "iamGroupPrefix": null,
             "parent": null
+          }
+        ]
+      },
+      "HumanResourcesWithLevel": {
+        "value": [
+          {
+            "level": 0,
+            "uniqueId": "12345678",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "Helsingin yliopisto in English",
+            "nameSv": "Helsingin yliopisto på Svenska",
+            "type": "kansio",
+            "code": "HY",
+            "parent": null
+          },
+          {
+            "level": 1,
+            "uniqueId": "32132132",
+            "nameFi": "Tiedekunnat",
+            "nameSv": "Fakulteterna",
+            "nameEn": "Faculties",
+            "type": "kansio",
+            "code": "F600",
+            "parent": "12345678"
           }
         ]
       },
@@ -938,6 +995,35 @@
           },
           "iamGroupPrefix": {
             "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "HumanResourcesWithLevel": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "level": {
+            "type": "integer"
           },
           "parent": {
             "type": "string"
