@@ -58,10 +58,10 @@
         }
       }
     },
-    "/v1/researchGroups": {
+    "/v1/humanResourcesIamGroupPrefix": {
       "get": {
-        "summary": "GET v1/researchGroups",
-        "operationId": "getResearchGroups",
+        "summary": "GET v1/humanResourcesIamGroupPrefix",
+        "operationId": "getHumanResourcesIamGroupPrefix",
         "responses": {
           "200": {
             "description": "OK",
@@ -70,12 +70,38 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/HumanResourcesIamGroupPrefix"
+                  }
+                },
+                "examples": {
+                  "Human Resources Iam Group Prefix Example" : {
+                    "$ref": "#/components/examples/HumanResourcesIamGroupPrefixExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/researchResources": {
+      "get": {
+        "summary": "GET v1/researchResources",
+        "operationId": "getResearchResources",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResearchResource"
                   }
                 },
                 "examples": {
                   "Human Resources Example" : {
-                    "$ref": "#/components/examples/ResearchGroupsExample"
+                    "$ref": "#/components/examples/ResearchResourcesExample"
                   }
                 }
               }
@@ -200,12 +226,38 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SteeringGroup"
+                    "$ref": "#/components/schemas/EducationUnit"
                   }
                 },
                 "examples": {
                   "Human Resources Example" : {
                     "$ref": "#/components/examples/EducationUnitsExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/educationUnits": {
+      "get": {
+        "summary": "GET v2/educationUnits",
+        "operationId": "getEducationUnitsV2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EducationUnitV2"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/EducationUnitsExampleV2"
                   }
                 }
               }
@@ -240,6 +292,32 @@
         }
       }
     },
+    "/v2/officialUnits": {
+      "get": {
+        "summary": "GET v2/officialUnits",
+        "operationId": "getOfficialUnitsV2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficialUnitV2"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/OfficialUnitsExampleV2"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/UniversityOfHelsinkiGroup": {
       "get": {
         "summary": "GET University of Helsinki Group",
@@ -265,8 +343,214 @@
           }
         }
       }
+    },
+    "/v1/NodesInMultipleHierarchies": {
+      "get": {
+        "summary": "Fetch nodes in given public hierarchies.",
+        "operationId": "getNodesInMultipleHierarchies",
+        "parameters": [{
+          "in": "query",
+          "name": "hierarchy",
+          "type": "string",
+          "required": true,
+          "description": "Comma separated list of public hierarchies to fetch (e.g. virallinen,opetus,talous,henkilosto)"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicHierarchyNode"
+                  }
+                },
+                "examples": {
+                  "Human Resources Example" : {
+                    "$ref": "#/components/examples/PublicHierarchyNodesExample"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "'hierarchy' parameter included unknown or private hierarchies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Request parameter 'hierarchy' can only contain public hierarchies."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/FinanceAndOldResearch": {
+      "get": {
+        "summary": "Fetch nodes in 'talous' and 'vanha_yksikko' hierarchies that have certain attributes",
+        "operationId": "getFinanceAndOldResearch",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinanceAndOldResearch"
+                  }
+                },
+                "examples": {
+                  "FinanceAndOldResearch example" : {
+                    "$ref": "#/components/examples/FinanceAndOldResearchExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/humanResourcesSubunitToUnit": {
+      "get": {
+        "summary": "Fetch certain units in human resources with their greatest parent",
+        "operationId": "getHumanResourcesSubunitToUnit",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/humanResourcesSubunitToUnit"
+                  }
+                },
+                "examples": {
+                  "PersonnelUnitMap example" : {
+                    "$ref": "#/components/examples/humanResourcesSubunitToUnit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/humanResourcesWithLevel": {
+      "get": {
+        "summary": "Fetch units in human resources and their level on the tree",
+        "operationId": "getHumanResourcesWithLevel",
+        "parameters": [{
+          "in": "query",
+          "name": "level",
+          "type": "integer",
+          "required": false,
+          "description": "Fetch hierarchies up to level or the whole tree if not set"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HumanResourcesWithLevel"
+                  }
+                },
+                "examples": {
+                  "Human Resources With level example" : {
+                    "$ref": "#/components/examples/HumanResourcesWithLevel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/UniversityOfHelsinkiSubunitToUnit": {
+      "get": {
+        "summary": "Fetch certain units in konserni with their greatest parent",
+        "operationId": "getUniversityOfHelsinkiSubunitToUnit",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UniversityOfHelsinkiSubunitToUnit"
+                  }
+                },
+                "examples": {
+                  "PersonnelUnitMap example" : {
+                    "$ref": "#/components/examples/UniversityOfHelsinkiSubunitToUnit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/AllNodeAttributes": {
+      "get": {
+        "summary": "Fetch all nodes' attributes",
+        "operationId": "getAllNodeAttributes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NodeAttribute"
+                  }
+                },
+                "examples": {
+                  "AllNodeAttributes example" : {
+                    "$ref": "#/components/examples/AllNodeAttributes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/AllSuccessorsAndPredecessors": {
+      "get": {
+        "summary": "Fetch all successors and predecessors",
+        "operationId": "getAllSuccessorsAndPredecessors",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AllSuccessorsAndPredecessors"
+                  }
+                },
+                "examples": {
+                  "AllSuccessorsAndPredecessors example" : {
+                    "$ref": "#/components/examples/AllSuccessorsAndPredecessors"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-
   },
   "components": {
     "securitySchemes": {
@@ -304,16 +588,73 @@
           }
         ]
       },
-      "ResearchGroupsExample" : {
+      "HumanResourcesIamGroupPrefixExample": {
         "value": [
           {
-            "uniqueId": "77096679",
+            "uniqueId": "32132131",
+            "code": "H123",
+            "type": "henkilosto-osa-alue",
+            "nameFi": "Tutkimusohjelmayksikkö",
+            "nameEn": "Research Programs Unit",
+            "nameSv": "Forskningsprogramenheten",
+            "iamGroupPrefix": "hy-ltdk-rpu",
+            "parent": "43434233"
+          },
+          {
+            "uniqueId": "12312312",
             "code": "HY",
-            "type": "tutkimusryhma",
+            "type": "yritys_yhteiso",
             "nameFi": "Helsingin yliopisto",
             "nameEn": "University of Helsinki",
             "nameSv": "Helsingfors universitet",
+            "iamGroupPrefix": null,
             "parent": null
+          }
+        ]
+      },
+      "HumanResourcesWithLevel": {
+        "value": [
+          {
+            "level": 0,
+            "uniqueId": "12345678",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "Helsingin yliopisto in English",
+            "nameSv": "Helsingin yliopisto på Svenska",
+            "type": "kansio",
+            "code": "HY",
+            "parent": null
+          },
+          {
+            "level": 1,
+            "uniqueId": "32132132",
+            "nameFi": "Tiedekunnat",
+            "nameSv": "Fakulteterna",
+            "nameEn": "Faculties",
+            "type": "kansio",
+            "code": "F600",
+            "parent": "12345678"
+          }
+        ]
+      },
+      "ResearchResourcesExample" : {
+        "value": [
+          {
+            "uniqueId": "12345678",
+            "unitStartDate": "yyyy-MM-dd",
+            "type": "tutkimusryhma",
+            "nameFi": "Psykologia",
+            "nameEn": "Psychology",
+            "nameSv": "Psykologi",
+            "parent": "87654321"
+          },
+          {
+            "nameFi" : "Helsingin yliopisto",
+            "nameEn" : "University of Helsinki",
+            "nameSv" : "Helsingfors universitet",
+            "uniqueId" : "87654321",
+            "parent" : null,
+            "type" : "yritys_yhteiso",
+            "unitStartDate" : "1640-03-26"
           }
         ]
       },
@@ -362,12 +703,49 @@
       "EducationUnitsExample" : {
         "value": [
           {
-            "uniqueId": "77096679",
-            "code": "HY",
-            "type": "tohtoriohjelma",
-            "nameFi": "Lääketutkimus tohtoriohjelma",
-            "nameEn": "Doctoral Programme in Drug Research",
-            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "uniqueId": "12345678",
+            "code": "444-M00",
+            "abbreviation": "TRA",
+            "type": "maisteriohjelma",
+            "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
+            "nameEn": "Master's Programme in Translation and Interpreting",
+            "nameSv": "Magisterprogrammet i översättning och tolkning",
+            "parent": "11112222"
+          },
+          {
+            "uniqueId": "87654321",
+            "code": "01",
+            "abbreviation": null,
+            "type": "kansio",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          }
+        ]
+      },
+      "EducationUnitsExampleV2" : {
+        "value": [
+          {
+            "uniqueId": "12345678",
+            "code": "444-M00",
+            "abbreviation": "TRA",
+            "type": "maisteriohjelma",
+            "nameFi": "Kääntämisen ja tulkkauksen maisteriohjelma",
+            "nameEn": "Master's Programme in Translation and Interpreting",
+            "nameSv": "Magisterprogrammet i översättning och tolkning",
+            "educationQualifier": "rinnakkainen-koulutusohjelma",
+            "parent": "11112222"
+          },
+          {
+            "uniqueId": "87654321",
+            "code": "01",
+            "abbreviation": null,
+            "type": "kansio",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "educationQualifier": null,
             "parent": null
           }
         ]
@@ -394,6 +772,30 @@
           }
         ]
       },
+      "OfficialUnitsExampleV2" : {
+        "value": [
+          {
+            "uniqueId": "12312312",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "abbreviation": "LÄÄK",
+            "educationQualifier": "tilauskoulutus",
+            "parent": "98765432"
+          },
+          {
+            "uniqueId": "32131231",
+            "type": "tiedekunta",
+            "nameFi": "Lääketieteellinen tiedekunta",
+            "nameEn": "Doctoral Programme in Drug Research",
+            "nameSv": "Doktorandprogrammet i läkemedelsforskning",
+            "educationQualifier": null,
+            "abbreviation": null,
+            "parent": "98765432"
+          }
+        ]
+      },
       "ConcernGroupExample" : {
         "value": [
           {
@@ -404,6 +806,141 @@
             "nameEn": "University of Helsinki Property Services Ltd",
             "nameSv": "Helsingfors Universitets fastighetsservice Ab",
             "parent": null
+          }
+        ]
+      },
+      "PublicHierarchyNodesExample": {
+        "value": [
+           {
+              "nameEn" : "University of Helsinki",
+              "nameFi" : "Helsingin yliopisto",
+              "nameSv" : "Helsingfors universitet",
+              "uniqueId" : "42785051"
+           },
+           {
+              "nameEn" : "Biological stations",
+              "nameFi" : "Biologiset asemat",
+              "nameSv" : "Biologiska stationer",
+              "uniqueId" : "62570520"
+           },
+           {
+              "nameEn" : "Medicum",
+              "nameFi" : "Medicum",
+              "nameSv" : "Medicum",
+              "uniqueId" : "81552327"
+           }
+        ]
+      },
+      "FinanceAndOldResearchExample": {
+        "value": [
+           {
+              "code": "HY",
+              "educationCode": null,
+              "nameEn" : "University of Helsinki",
+              "nameFi" : "Helsingin yliopisto",
+              "nameSv" : "Helsingfors universitet",
+              "abbreviation": "hyh",
+              "parent": null,
+              "publicity": "kylla",
+              "type": "yritys_yhteiso",
+              "uniqueCode": "kylla",
+              "uniqueId" : "42785051",
+              "unitStartDate": "1640-03-26"
+           },
+           {
+             "code" : "H8230",
+             "educationCode": "1234",
+             "nameEn" : "Hyytiälä Forestry Field Station",
+             "nameFi" : "Hyytiälän metsäasema",
+             "nameSv" : "Hyytiälä forststation ",
+             "abbreviation": null,
+             "parent" : "54032432",
+             "publicity" : "kylla",
+             "type" : "alayksikko",
+             "uniqueCode" : "kylla",
+             "uniqueId" : "61962952",
+             "unitStartDate" : null
+           },
+           {
+             "code" : null,
+             "educationCode": "H0123",
+             "nameEn" : "Unit",
+             "nameFi" : "Yksikkö",
+             "nameSv" : "Unit",
+             "abbreviation": null,
+             "parent" : "99999999",
+             "publicity" : "kylla",
+             "type" : "alayksikko",
+             "uniqueCode" : "kylla",
+             "uniqueId" : "99998888",
+             "unitStartDate" : null
+           }
+        ]
+      },
+      "humanResourcesSubunitToUnit": {
+        "value": [
+          {
+            "subUnitCode": "H01",
+            "unitCode": "H01",
+            "unitNameFi": "Yliopistopalvelut"
+          },
+          {
+            "subUnitCode": "H022",
+            "unitCode": "H01",
+            "unitNameFi": "Yliopistopalvelut"
+          },
+          {
+            "subUnitCode": "H02201",
+            "unitCode": "H01",
+            "unitNameFi": "Yliopistopalvelut"
+          }
+        ]
+      },
+      "UniversityOfHelsinkiSubunitToUnit": {
+        "value": [
+          {
+            "subUnitCode": "KP",
+            "unitCode": "KP",
+            "unitNameFi": "Helsingin yliopiston kiinteistöpalvelut"
+          },
+          {
+            "subUnitCode": "KP01",
+            "unitCode": "KP",
+            "unitNameFi": "Helsingin yliopiston kiinteistöpalvelut"
+          }
+        ]
+      },
+      "AllNodeAttributes": {
+        "value": [
+          {
+            "endDate": null,
+            "key": "name_sv",
+            "startDate": "2024-09-03",
+            "uniqueId": "100000048",
+            "value": "testbarnfakulten"
+          },
+          {
+            "endDate": null,
+            "key": "name_en",
+            "startDate": "2024-09-03",
+            "uniqueId": "100000048",
+            "value": "testchildfaculty"
+          }
+        ]
+      },
+      "AllSuccessorsAndPredecessors": {
+        "value": [
+          {
+            "endDate": null,
+            "predecessor": "18770",
+            "startDate": "2023-06-30",
+            "successor": "18488"
+          },
+          {
+            "endDate": null,
+            "predecessor": "32678",
+            "startDate": "2023-12-01",
+            "successor": "5935"
           }
         ]
       }
@@ -429,6 +966,64 @@
           },
           "nameSv": {
             "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "HumanResourcesIamGroupPrefix": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "iamGroupPrefix": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "HumanResourcesWithLevel": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "level": {
+            "type": "integer"
           },
           "parent": {
             "type": "string"
@@ -538,6 +1133,249 @@
             "type": "string"
           },
           "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "OfficialUnitV2": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "educationQualifier": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "ResearchResource": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "unitStartDate": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicHierarchyNode": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          }
+        }
+      },
+      "EducationUnit": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "EducationUnitV2": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "educationQualifier": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "FinanceAndOldResearch": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "educationCode": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "unitStartDate": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "string"
+          },
+          "uniqueCode": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          }
+        }
+      },
+      "humanResourcesSubunitToUnit": {
+        "type": "object",
+        "properties": {
+          "subUnitCode": {
+            "type": "string",
+            "description": "The hr_lyhenne of the sub unit"
+          },
+          "unitCode": {
+            "type": "string",
+            "description": "The hr_lyhenne of the greatest parent of the sub unit"
+          },
+          "unitNameFi": {
+            "type": "string",
+            "description": "The name_fi of the greatest parent fo the sub unit"
+          }
+        }
+      },
+      "UniversityOfHelsinkiSubunitToUnit": {
+        "type": "object",
+        "properties": {
+          "subUnitCode": {
+            "type": "string",
+            "description": "The talous_tunnus of the sub unit"
+          },
+          "unitCode": {
+            "type": "string",
+            "description": "The talous_tunnus of the greatest parent of the sub unit"
+          },
+          "unitNameFi": {
+            "type": "string",
+            "description": "The name_fi of the greatest parent fo the sub unit"
+          }
+        }
+      },
+      "NodeAttribute": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string",
+            "description": "The node of the attribute"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        }
+      },
+      "AllSuccessorsAndPredecessors": {
+        "type": "object",
+        "properties": {
+          "successor": {
+            "type": "string"
+          },
+          "predecessor": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
             "type": "string"
           }
         }

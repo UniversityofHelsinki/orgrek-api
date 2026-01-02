@@ -1,4 +1,4 @@
-import { steeringGroups, degreeProgrammes, humanResources, texts, researchGroups, financeUnits, financeUnitsPublic, educationUnits, officialUnits, concernGroups, financeUnitsV2, financeUnitsWithUniqueCodeExclusive } from "./api-db.js";
+import { steeringGroups, degreeProgrammes, humanResources, humanResourcesIamGroupPrefix, texts, researchResources, financeUnits, financeUnitsPublic, educationUnits, educationUnitsV2, officialUnits, officialUnitsV2, concernGroups, financeUnitsV2, financeUnitsWithUniqueCodeExclusive, NodesInMultipleHierarchies, FinanceAndOldResearch, personnelUnitMap, konserniUnitMap, allNodeAttributes, allSuccessorsAndPredecessors, humanResourcesWithLevel } from "./api-db.js";
 import { API_VERSION_1, API_VERSION_2 } from '../utils/constants.js';
 import { readFileSync } from "fs";
 
@@ -20,14 +20,25 @@ const router = (router) => {
 
     router.get(`/${API_VERSION_1}/degreeProgrammes/:id`, degreeProgrammes);
     router.get(`/${API_VERSION_1}/humanResources`, humanResources);
-    router.get(`/${API_VERSION_1}/researchGroups`, researchGroups);
+    router.get(`/${API_VERSION_1}/humanResourcesIamGroupPrefix`, humanResourcesIamGroupPrefix);
+    router.get(`/${API_VERSION_1}/humanResourcesWithLevel`, humanResourcesWithLevel);
+    router.get(`/${API_VERSION_1}/researchResources`, researchResources);
     router.get(`/${API_VERSION_1}/financeUnits`, financeUnits);
     router.get(`/${API_VERSION_2}/financeUnits`, financeUnitsV2);
     router.get(`/${API_VERSION_1}/financeUnitsPublic`, financeUnitsPublic);
     router.get(`/${API_VERSION_1}/financeUnitsUniqueCode`, financeUnitsWithUniqueCodeExclusive);
     router.get(`/${API_VERSION_1}/educationUnits`, educationUnits);
+    router.get(`/${API_VERSION_2}/educationUnits`, educationUnitsV2);
     router.get(`/${API_VERSION_1}/officialUnits`, officialUnits);
+    router.get(`/${API_VERSION_2}/officialUnits`, officialUnitsV2);
     router.get(`/${API_VERSION_1}/UniversityOfHelsinkiGroup`, concernGroups);
+    router.get(`/${API_VERSION_1}/NodesInMultipleHierarchies`, NodesInMultipleHierarchies);
+    router.get(`/${API_VERSION_1}/humanResourcesSubunitToUnit`, personnelUnitMap);
+    router.get(`/${API_VERSION_1}/UniversityOfHelsinkiSubunitToUnit`, konserniUnitMap);
+    router.get(`/${API_VERSION_1}/AllNodeAttributes`, allNodeAttributes);
+    router.get(`/${API_VERSION_1}/AllSuccessorsAndPredecessors`, allSuccessorsAndPredecessors);
+
+    router.get(`/${API_VERSION_1}/FinanceAndOldResearch`, FinanceAndOldResearch);
 
     router.get(`/${API_VERSION_1}/texts`, texts);
 

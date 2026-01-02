@@ -49,9 +49,34 @@ export const humanResources = async (req, res) => {
     }
 };
 
-export const researchGroups = async (req, res) => {
+export const humanResourcesIamGroupPrefix = async (req, res) => {
     try {
-      const response = await fetch(`${apiDbHost}/api/public/researchGroups`, {
+      const response = await fetch(`${apiDbHost}/api/public/humanResourcesIamGroupPrefix`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const humanResourcesWithLevel = async (req, res) => {
+    const { level } = req.query;
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/humanResourcesWithLevel?level=${level || -1}`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const researchResources = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/researchResources`, {
         method: 'GET',
       });
       const data = await response.json();
@@ -122,9 +147,33 @@ export const educationUnits = async (req, res) => {
     }
 };
 
+export const educationUnitsV2 = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/educationUnitsWithEducationQualifier`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
 export const officialUnits = async (req, res) => {
     try {
       const response = await fetch(`${apiDbHost}/api/public/officialUnits`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const officialUnitsV2 = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/officialUnitsWithEducationQualifier`, {
         method: 'GET',
       });
       const data = await response.json();
@@ -146,3 +195,75 @@ export const concernGroups = async (req, res) => {
     }
 };
 
+export const NodesInMultipleHierarchies = async (req, res) => {
+    const { hierarchy } = req.query;
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/NodesInMultipleHierarchies?hierarchy=${hierarchy}`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const FinanceAndOldResearch = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/FinanceAndOldResearch`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const personnelUnitMap = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/PersonnelUnitMap`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const konserniUnitMap = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/KonserniUnitMap`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const allNodeAttributes = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/AllNodeAttributes`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+export const allSuccessorsAndPredecessors = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/AllSuccessorsAndPredecessors`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+    }
+};
