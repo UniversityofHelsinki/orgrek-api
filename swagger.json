@@ -576,6 +576,32 @@
           }
         }
       }
+    },
+    "/v1/humanResourcesAndResearchGroups": {
+      "get": {
+        "summary": "Fetch nodes in 'tutkimusryhmat' and 'henkilosto' hierarchy",
+        "operationId": "getHumanResourcesAndResearchGroups",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HumanResourcesAndResearchGroups"
+                  }
+                },
+                "examples": {
+                  "Research Groups Example" : {
+                    "$ref": "#/components/examples/HumanResourcesAndResearchGroups"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -991,6 +1017,28 @@
             "successor": "5935"
           }
         ]
+      },
+      "HumanResourcesAndResearchGroups": {
+        "value":    [{
+            "code" : null,
+            "nameEn" : "Helsinki Inequality Initiative",
+            "nameFi" : "Helsinki Inequality Initiative",
+            "nameSv" : "Helsinki Inequality Initiative",
+            "parent" : "90880385",
+            "type" : "tutkimusyhteiso",
+            "uniqueId" : "83193740",
+            "unitStartDate" : "2018-01-01"
+        },
+        {
+            "code" : null,
+            "nameEn" : "Learning, Culture & Interventions (LECI)",
+            "nameFi" : "Learning, Culture & Interventions (LECI)",
+            "nameSv" : "Learning, Culture & Interventions (LECI)",
+            "parent" : "90880385",
+            "type" : "tutkimusryhma",
+            "uniqueId" : "99897622",
+            "unitStartDate" : "2017-09-01"
+        }]
       }
     },
     "schemas": {
@@ -1450,6 +1498,32 @@
             "type": "string"
           },
           "endDate": {
+            "type": "string"
+          }
+        }
+      },
+      "HumanResourcesAndResearchGroups": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "parent": {
             "type": "string"
           }
         }
