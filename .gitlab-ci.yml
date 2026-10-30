@@ -44,7 +44,7 @@ setup:
 
 generate-sbom:
   stage: dependency-track-sbom
-  image: node:22-alpine
+  image: node:24-alpine
   only:
     - schedules
   tags:
@@ -141,6 +141,8 @@ deploy_dev:
     - oc set env deploy/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env deploy/organisaatiorekisteri-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc set env deploy/organisaatiorekisteri-api-dev TZ="Europe/Helsinki"
+
+    - oc patch bc/organisaatiorekisteri-api-dev --type=merge --patch '{"spec":{"strategy":{"dockerStrategy":{"from":null}}}}'
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-dev --from-dir=. --follow
     # patch openshift buildConfig file
@@ -173,6 +175,8 @@ deploy_test:
     - oc set env deploy/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env deploy/organisaatiorekisteri-api-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc set env deploy/organisaatiorekisteri-api-test TZ="Europe/Helsinki"
+
+    - oc patch bc/organisaatiorekisteri-api-test --type=merge --patch '{"spec":{"strategy":{"dockerStrategy":{"from":null}}}}'
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-test --from-dir=. --follow
     # patch openshift buildConfig file
@@ -206,6 +210,8 @@ deploy_prod:
     - oc set env deploy/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env deploy/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc set env deploy/organisaatiorekisteri-api-prod TZ="Europe/Helsinki"
+
+    - oc patch bc/organisaatiorekisteri-api-prod --type=merge --patch '{"spec":{"strategy":{"dockerStrategy":{"from":null}}}}'
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-prod --from-dir=. --follow
     # patch openshift buildConfig file
@@ -238,7 +244,9 @@ deploy_periodically_prod:
     - oc set env deploy/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env deploy/organisaatiorekisteri-api-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc set env deploy/organisaatiorekisteri-api-prod TZ="Europe/Helsinki"
-    # start build process in OpenShift
+
+    - oc patch bc/organisaatiorekisteri-api-prod --type=merge --patch '{"spec":{"strategy":{"dockerStrategy":{"from":null}}}}'
+      # start build process in OpenShift
     - oc start-build organisaatiorekisteri-api-prod --from-dir=. --follow
     # patch openshift buildConfig file
     - oc patch bc/organisaatiorekisteri-api-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
@@ -268,7 +276,9 @@ deploy_organisation_dev:
     - oc set env deploy/organisation-api-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env deploy/organisation-api-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc set env deploy/organisation-api-dev TZ="Europe/Helsinki"
-    # start build process in OpenShift
+
+    - oc patch bc/organisaatiorekisteri-api-dev --type=merge --patch '{"spec":{"strategy":{"dockerStrategy":{"from":null}}}}'
+      # start build process in OpenShift
     - oc start-build organisation-api-dev --from-dir=. --follow
     # patch openshift buildConfig file
     - oc patch bc/organisation-api-dev --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
