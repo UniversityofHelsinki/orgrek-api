@@ -49,6 +49,19 @@ export const humanResources = async (req, res) => {
     }
 };
 
+export const organizationalChart = async (req, res) => {
+    try {
+      const response = await fetch(`${apiDbHost}/api/public/organizationalChart`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (err) {
+      console.log(err);
+      res.status(502).json({ error: 'Database service unavailable' });
+    }
+};
+
 export const humanResourcesIamGroupPrefix = async (req, res) => {
     try {
       const response = await fetch(`${apiDbHost}/api/public/humanResourcesIamGroupPrefix`, {
