@@ -1,4 +1,4 @@
-import { steeringGroups, degreeProgrammes, humanResources, humanResourcesIamGroupPrefix, texts, researchResources, researchGroups, financeUnits, financeUnitsPublic, educationUnits, educationUnitsV2, officialUnits, officialUnitsV2, concernGroups, financeUnitsV2, financeUnitsWithUniqueCodeExclusive, NodesInMultipleHierarchies, FinanceAndOldResearch, personnelUnitMap, konserniUnitMap, allNodeAttributes, allSuccessorsAndPredecessors, humanResourcesWithLevel, humanResourcesAndResearchGroups } from "./api-db.js";
+import { steeringGroups, degreeProgrammes, humanResources, organizationalChart, humanResourcesIamGroupPrefix, texts, researchResources, researchGroups, financeUnits, financeUnitsPublic, educationUnits, educationUnitsV2, officialUnits, officialUnitsV2, concernGroups, financeUnitsV2, financeUnitsWithUniqueCodeExclusive, NodesInMultipleHierarchies, FinanceAndOldResearch, personnelUnitMap, konserniUnitMap, allNodeAttributes, allSuccessorsAndPredecessors, humanResourcesWithLevel, humanResourcesAndResearchGroups } from "./api-db.js";
 import { API_VERSION_1, API_VERSION_2 } from '../utils/constants.js';
 import { readFileSync } from "fs";
 
@@ -20,6 +20,7 @@ const router = (router) => {
 
     router.get(`/${API_VERSION_1}/degreeProgrammes/:id`, degreeProgrammes);
     router.get(`/${API_VERSION_1}/humanResources`, humanResources);
+    router.get(`/${API_VERSION_1}/organizationalChart`, organizationalChart);
     router.get(`/${API_VERSION_1}/humanResourcesIamGroupPrefix`, humanResourcesIamGroupPrefix);
     router.get(`/${API_VERSION_1}/humanResourcesWithLevel`, humanResourcesWithLevel);
     router.get(`/${API_VERSION_1}/researchResources`, researchResources);
