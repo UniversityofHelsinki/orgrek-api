@@ -58,6 +58,32 @@
         }
       }
     },
+    "/v1/organizationalChart": {
+      "get": {
+        "summary": "GET v1/organizationalChart",
+        "operationId": "getOrganizationalChart",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrganizationalChart"
+                  }
+                },
+                "examples": {
+                  "Organizational Chart Example": {
+                    "$ref": "#/components/examples/OrganizationalChartExample"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/humanResourcesIamGroupPrefix": {
       "get": {
         "summary": "GET v1/humanResourcesIamGroupPrefix",
@@ -640,6 +666,26 @@
           }
         ]
       },
+      "OrganizationalChartExample": {
+        "value": [
+          {
+            "uniqueId": "77096679",
+            "type": "kansio",
+            "nameFi": "Helsingin yliopisto",
+            "nameEn": "University of Helsinki",
+            "nameSv": "Helsingfors universitet",
+            "parent": null
+          },
+          {
+            "uniqueId": "12345678",
+            "type": "tiedekunta",
+            "nameFi": "Matemaattis-luonnontieteellinen tiedekunta",
+            "nameEn": "Faculty of Science",
+            "nameSv": "Matematisk-naturvetenskapliga fakulteten",
+            "parent": "77096679"
+          }
+        ]
+      },
       "HumanResourcesIamGroupPrefixExample": {
         "value": [
           {
@@ -1065,6 +1111,33 @@
           },
           "parent": {
             "type": "string"
+          }
+        }
+      },
+      "OrganizationalChart": {
+        "type": "object",
+        "properties": {
+          "uniqueId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "nameFi": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameSv": {
+            "type": "string",
+            "nullable": true
+          },
+          "parent": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
